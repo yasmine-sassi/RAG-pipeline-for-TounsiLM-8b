@@ -70,11 +70,13 @@ def build_index(
         pass
 
     ids, texts, metadatas = [], [], []
+    seen_ids = set(existing_ids)
 
     for entry in entries:
         entry_id = entry.get("id", "")
-        if not entry_id or entry_id in existing_ids:
+        if not entry_id or entry_id in seen_ids:
             continue
+        seen_ids.add(entry_id)
 
         embed_text = build_embed_text(entry)
         if not embed_text.strip():
