@@ -8,22 +8,32 @@ Bad data = bad AI. This is critical.
 import json
 from pathlib import Path
 from typing import Dict, List, Tuple
+
 from rag_kb.schemas.expression_schema import ExpressionEntry
 from rag_kb.schemas.proverb_schema import ProverbEntry
+from rag_kb.schemas.food_schema import FoodEntry
+from rag_kb.schemas.ritual_schema import RitualEntry
+from rag_kb.schemas.code_switch_schema import CodeSwitchEntry
+from rag_kb.schemas.media_schema import MediaEntry
+from rag_kb.schemas.color_schema import ColorEntry
+from rag_kb.schemas.number_slang_schema import NumberSlangEntry
+
+SCHEMA_MAP = {
+    "expression": ExpressionEntry,
+    "number_slang": NumberSlangEntry,
+    "proverb": ProverbEntry,
+    "food": FoodEntry,
+    "ingredient": FoodEntry,
+    "ritual": RitualEntry,
+    "code_switch": CodeSwitchEntry,
+    "tv_series": MediaEntry,
+    "movie": MediaEntry,
+    "film": MediaEntry,
+    "color": ColorEntry,
+}
 
 
 def validate_file(file_path: str) -> Tuple[List[dict], List[Tuple[str, str]]]:
-    """
-    Validates a JSON file of entries against appropriate schemas.
-
-    Args:
-        file_path: Path to the JSON file
-
-    Returns:
-        Tuple of (valid_entries, errors)
-        - valid_entries: List of validated entries
-        - errors: List of (entry_id, error_message) tuples
-    """
     valid_entries = []
     errors = []
 
@@ -45,22 +55,14 @@ def validate_file(file_path: str) -> Tuple[List[dict], List[Tuple[str, str]]]:
         entry_id = entry.get("id", "UNKNOWN")
         entry_type = entry.get("type", "UNKNOWN")
 
+        schema_class = SCHEMA_MAP.get(entry_type)
+        if schema_class is None:
+            errors.append((entry_id, f"Unknown type: {entry_type!r}. Known types: {list(SCHEMA_MAP)}"))
+            continue
+
         try:
-            if entry_type == "expression":
-                validated = ExpressionEntry(**entry)
-            elif entry_type == "proverb":
-                validated = ProverbEntry(**entry)
-            else:
-                errors.append(
-                    (
-                        entry_id,
-                        f"Unknown type: {entry_type}. Must be 'expression' or 'proverb'",
-                    )
-                )
-                continue
-
+            validated = schema_class(**entry)
             valid_entries.append(validated.model_dump())
-
         except Exception as e:
             errors.append((entry_id, str(e)))
 
@@ -68,17 +70,9 @@ def validate_file(file_path: str) -> Tuple[List[dict], List[Tuple[str, str]]]:
 
 
 def print_validation_report(valid_entries: List[dict], errors: List[Tuple[str, str]]):
-    """
-    Prints a readable validation report.
-
-    Args:
-        valid_entries: List of validated entries
-        errors: List of validation errors
-    """
     print("\n" + "=" * 60)
     print("VALIDATION REPORT")
     print("=" * 60)
-
     print(f"\n✓ Valid entries: {len(valid_entries)}")
 
     if errors:
@@ -93,6 +87,5 @@ def print_validation_report(valid_entries: List[dict], errors: List[Tuple[str, s
 
 
 if __name__ == "__main__":
-    # Example usage
     valid, errors = validate_file("data/expressions.json")
     print_validation_report(valid, errors)

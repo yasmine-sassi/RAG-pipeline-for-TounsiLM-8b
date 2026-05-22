@@ -12,8 +12,6 @@ class RAGPipeline:
         model_id: str = "alabenayed/TounsiLM-8b",
         embedding_model: str = "intfloat/multilingual-e5-base",
         top_k: int = 5,
-        load_in_4bit: bool = False,
-        load_in_8bit: bool = False,
     ):
         self.top_k = top_k
 
@@ -22,11 +20,7 @@ class RAGPipeline:
         print(f"Knowledge base: {self.retriever.count()} indexed entries\n")
 
         print("Initializing TounsiLM-8b...")
-        self.llm = TounsiLM(
-            model_id=model_id,
-            load_in_4bit=load_in_4bit,
-            load_in_8bit=load_in_8bit,
-        )
+        self.llm = TounsiLM(model_id=model_id)
 
     def query(
         self,

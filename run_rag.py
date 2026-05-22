@@ -15,8 +15,6 @@ Options:
   --min-score F        Minimum similarity score 0–1 (default: 0.0)
   --max-tokens N       Max tokens to generate (default: 512)
   --temperature F      Sampling temperature (default: 0.7)
-  --load-in-4bit       Quantize LLM to 4-bit (requires GPU + bitsandbytes)
-  --load-in-8bit       Quantize LLM to 8-bit (requires GPU + bitsandbytes)
   --embedding-model M  HuggingFace embedding model (default: intfloat/multilingual-e5-base)
 
 Examples:
@@ -157,8 +155,6 @@ def _build_pipeline(args):
     return RAGPipeline(
         embedding_model=args.embedding_model,
         top_k=args.top_k,
-        load_in_4bit=args.load_in_4bit,
-        load_in_8bit=args.load_in_8bit,
     )
 
 
@@ -205,8 +201,6 @@ def main():
     parser.add_argument("--temperature", type=float, default=0.7, metavar="F", help="Sampling temperature")
 
     # Model options
-    parser.add_argument("--load-in-4bit", action="store_true", help="4-bit quantization (GPU + bitsandbytes)")
-    parser.add_argument("--load-in-8bit", action="store_true", help="8-bit quantization (GPU + bitsandbytes)")
     parser.add_argument(
         "--embedding-model",
         default="intfloat/multilingual-e5-base",

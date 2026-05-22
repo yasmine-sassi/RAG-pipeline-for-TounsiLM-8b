@@ -15,11 +15,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi",
-      "latin"
-    ],
+    "scripts": ["arabic", "arabizi", "latin"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الهريسة harissa معجون الفلفل الأحمر الحار التونسي، مصنوع من الفلفل الأحمر المجفف المطحون مع الثوم والكروية والملح وزيت الزيتون ما تاكلش الطعام التونسي بلا هريسة، هي روح المطبخ التونسي تُستعمل الهريسة في معظم الأكلات التونسية كالعجة والشكشوكة والطبيخ والمرقاز والعصبيان والمصلي والبنادق، وكذلك في السلاطات والأحسية وبعض الطواجن معجون حار مصنوع في المنزل أو مشتراة من السوق، تتميز هريسة الديار بطعم حار ورائحة مميزة تفوح من بعيد. نوعان: هريسة السوق وهريسة الديار"
@@ -40,11 +36,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi",
-      "latin"
-    ],
+    "scripts": ["arabic", "arabizi", "latin"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الشكشوكة chakchouka طبق تونسي شعبي مكون من الفلفل الحلو والطماطم والثوم والبيض يُطهى في مقلاة واحدة الشكشوكة في الصباح تعمر الجسم وتعطيك النشاط ليوم كامل تُقدَّم على الإفطار أو الغداء، من أشهر الأكلات الشعبية التي تُعرف تونس بها في الخارج يُحمى الزيت ثم تُقلى الطماطم والفلفل مع الهريسة والثوم حتى تنضج الصالصة، ثم يُكسر البيض فوقها ويُترك حتى يتماسك. تُقدم ساخنة مع الخبز"
@@ -65,11 +57,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi",
-      "latin"
-    ],
+    "scripts": ["arabic", "arabizi", "latin"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "البريك brik معجنة تونسية مقلية مصنوعة من ورقة عجين رقيقة محشوة بالبيض والتن والبقدونس أو اللحم والجبن البريك بالبيض هو أكلة رمضان الأولى في كل بيت تونسي يُقدَّم على المائدة في رمضان كمقبلات أو وجبة خفيفة، ومشهور جداً عند السياح ورقة البريك عجينة رقيقة شفافة تُحشى بخليط البيض والتن والبقدونس والكبار والفلفل والملح ثم تُطوى وتُقلى في زيت حامٍ حتى تصبح ذهبية مقرمشة"
@@ -90,11 +78,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi",
-      "latin"
-    ],
+    "scripts": ["arabic", "arabizi", "latin"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الكسكسي couscous الطبق الوطني التونسي، حبوب السميد المطهوة بالبخار تُقدَّم مع مرق اللحم أو الدجاج أو السمك والخضر ما كان جمعة بلا كسكسي عند عائلتنا، هو تقليد ما نتخلاوش عنه يُعدّ الطبق الوطني للتونسيين، يُقدَّم أساساً يوم الجمعة وفي المناسبات والأعياد والأفراح يُحضَّر الكسكسي من السميد الغليظ أو الرقيق أو النوع المتوسط المعروف بالسميد 5س. يُطهى بالبخار فوق المقفول مرتين أو ثلاث مرات. يُقدَّم مع مرق اللحم أو الدجاج أو السمك والخضر والحمص"
@@ -115,10 +99,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "العصبان osban نوع من الأمعاء المحشوة التونسية، تُحشى بخليط الأرز والأعشاب والكبد المفروم والسبانخ والتوابل العصبان في الكسكسي يعطيه طعم ما يوصفش، هو اللي يفرق كسكسي تونس عن غيره يُستخدم مع الكسكسي أو يُقدَّم مع كسكسي رأس العام مع القديد والفول تُحشى الأمعاء المنظفة جيداً بخليط من الأرز والسبانخ والبقدونس والكراث والكبد المفروم وبعض التوابل، ثم تُطهى في مرق الكسكسي أو تُسلق"
@@ -139,10 +120,7 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "القديد gdid اللحم المجفف والمملّح، يُحفظ في الملح والتوابل ليُستخدم طوال العام وخاصة في كسكسي رأس العام أمي تعمل القديد في عيد الأضحى وتحتفظ به حتى رأس السنة الهجرية يُستخدم في كسكسي رأس العام مع العصبان والفول، ويُعدّ من أهم المحفوظات الغذائية التونسية التقليدية يُقطع اللحم قطعاً كبيرة متساوية ثم يُتبَّل بالفلفل الأسود والملح ثم يُشلَّل ويُترك ليجف في مكانه يومين أو ثلاثة، وذو ملوحة شديدة"
@@ -163,11 +141,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi",
-      "latin"
-    ],
+    "scripts": ["arabic", "arabizi", "latin"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "المرقاز merguez نقانق حمراء تونسية حارة مصنوعة من اللحم المفروم الممزوج بالهريسة والتوابل المرقاز المشوي في الجمعة مع الخبز الطازج ما يقدرش يقاومه حتى يُشوى أو يُقلى أو يُضاف إلى الشكشوكة والأحسية وبعض الأكلات الأخرى يُحشى معى الخروف أو البقر بخليط اللحم المفروم مع الهريسة والكمون والكروية والفلفل الأسود والثوم والملح، ثم يُشكّل على هيئة نقانق طويلة"
@@ -188,10 +162,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الدمس dmess طبق تونسي شعبي مكون من الفول الأخضر المسلوق بالكمون والهريسة والثوم وزيت الزيتون الدمس في الصباح الباكر بالخبز الديار هذا هو الإفطار الأصيل التونسي إفطار شعبي يومي بارز خاصة في الصباح الباكر، يُقدَّم في أوعية فردية مسقياً بزيت الزيتون مع قطع الليمون يُفصّ الفول ويوضع في قدر مع ملعقة صغيرة من الملح ويُغمر باللتر من الماء، يُطهى على نار قوية حتى يتبخر الماء وينضج الفول. تُضاف الهريسة والكمون والثوم والزيت ثم يُقدَّم ساخناً"
@@ -212,10 +183,7 @@
     "region": "tunis",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "السدّر sder طبق تونسي من الكبار المملحة مطهوة مع الثوم والهريسة ومعجون الطماطم والكروية والسميد السدر هذا طبق ما تلقاهوش إلا في تونس، ريحته تصحي الشهية يُقدَّم كإفطار أو مقبلات، من الأطباق التقليدية التي تحتوي على الكبار الملوحة المميزة تُنظف الكبار وتُقص بدون تقشير ثم تنقع في الماء البارد. تُحمى الزيت مع الثوم والكروية ثم يُضاف معجون الطماطم والهريسة والكبار. يُسكب الماء ثم يُضاف السميد تدريجياً ويُطهى على نار هادئة"
@@ -236,10 +204,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الحسّاء الحلالم hsoua khlelm / potage à la tunisienne حساء تونسي كثيف بالمقرونة الصغيرة والطماطم والفلفل الحار واللحم والحمص الحلالم في الشتا تسخن الجسم وتشبع البطن، لازم تجرب يُقدَّم كوجبة دافئة في الشتاء أو في رمضان، ويشتهر في المنازل والمطاعم الشعبية يُحمى الزيت مع البصل المفروم ثم يُضاف اللحم ومعجون الطماطم والهريسة والفلفل والحمص والماء، وعند نضج اللحم تُضاف المقرونة الصغيرة أو الشعيرية"
@@ -260,11 +225,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi",
-      "latin"
-    ],
+    "scripts": ["arabic", "arabizi", "latin"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "السلاطة التونسية salaata tunisiyya سلاطة تونسية كلاسيكية من الطماطم والفلفل الحلو والبصل والتن والبيض المسلوق والزيتون والكبار السلاطة التونسية ما تكملش بلا تن وكبار وبيضة مسلوقة تُقدَّم كمقبلات أو طبق جانبي في الوجبات اليومية والمطاعم، ومن أشهر الأطباق التونسية في الخارج تُقطع الطماطم والفلفل وتُزال بذورها. يُضاف البصل المفروم ودقيق والزيتون والتن. تُتبَّل بمزيج الزيت والليمون والفلفل الأسود والملح وتُزيَّن بالبيض المسلوق والزيتون"
@@ -285,10 +246,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "سلاطة الباذنجان salaata baadinjaane سلاطة تونسية مطهوة من الباذنجان المشوي في الفرن مع الثوم والهريسة والخل والزيت والكبار سلاطة الباذنجان تاع أمي تقلب الحال، تاكلها بالخبز وما تستاهلش غير ذلك تُقدَّم كمقبلات أو طبق جانبي، شائعة جداً في الصيف حين يكثر الباذنجان يُنظَّف الباذنجان ويُقشَّر ويوضع في الفرن على حرارة متوسطة حتى تتكرمش القشرة ويلين. يُبرَّد ثم تُزال القشرة ويُعصر ليخرج الماء. تُخلط العصيدة مع خليط الهريسة والخل والزيت والثوم والكبار"
@@ -309,10 +267,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الهروس hrous معجون الفلفل الحلو والحار المطهو مع الثوم والكبار والزيت، مشابه للهريسة لكن أخف حدة الهروس أخف من الهريسة، مناسب للي ما يتحملش الحار الشديد يُستخدم كتوابل جانبية أو مع السلاطات والمقبلات تُنظف قرون الفلفل وتُقص بدون تقشير ثم تُطحن بالمهراس ناعماً. يُضاف الزيت والثوم والكبار والملح ثم يُتبَّل الخليط بالفلفل الأسود"
@@ -333,10 +288,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الترشي torchi مخللات تونسية تقليدية من اللفت المملح في الخل مع الهريسة، لونها بنفسجي مميز الترشي مع الكاسكروت يخليه يتلمّع، ما يطيب الفطور بلاه يُقدَّم جانباً مع الساندويتش والكاسكروت والفطور الشعبي، أو كمحفوظات تُحضَّر في المنازل تُقطع رؤوس اللفت الطازج في شكل حلقات رقيقة ثم تُنقع في ماء مالح في شكل حلقات رقيقة تُسلق قرابة ربع ساعة في الماء المالح ثم تُصفى. توضع الهريسة والزيت والخل فوقها"
@@ -357,10 +309,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الخبز الديار khobz leyyar / pain maison الخبز التونسي التقليدي المصنوع في المنزل، مستدير الشكل ذهبي اللون بقشرة طرية وداخل طري ريحة الخبز الديار في الفرن تحيي الروح، ما شيء يشبه خبز أمي يُصنع في البيوت التونسية التقليدية ويُقدَّم في كل الوجبات، يُعتبر قلب الفطور التونسي عجين من الدقيق والخميرة والملح والماء يُعجن جيداً ثم يُترك ليختمر في مكان دافئ، يُخبز في الفرن حتى يحمر وجهاه"
@@ -381,10 +330,7 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الحسو الخميرة hsou lkhemira حساء تونسي تقليدي سميك مصنوع من عجين الخمير المحلول في الماء مع الهريسة والثوم والكروية الحسو الخميرة هو الإفطار الأصيل في القرى التونسية، يعطيك دفا ويشبع من الصباح إفطار تقليدي ريفي دافئ، يُقدَّم في الأيام الباردة ويُعدّ من الأحسية التونسية الأصيلة تُحمى الزيت مع الثوم المقشر والكروية ثم يُضاف الهريسة ومعجون الطماطم والماء. تُحلّ الخميرة في نصف لتر من الماء وتُصفى ثم تُسكب في القدر وتُطهى على نار هادئة نصف ساعة مع التحريك"
@@ -405,10 +351,7 @@
     "region": "tunis",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الكلمار المحشي kalmar mehchi الحبار المحشو تونسياً بالأرز والبصل والجبن البرمزان والبيض والتوابل، مطهو في صالصة الطماطم الكلمار المحشي طبق فاخر تقدمه في الأعياد، طعمه يذوب في الفم يُقدَّم في المناسبات والأعياد كطبق رئيسي من ثمار البحر، شائع في المدن الساحلية تُسلق أكياس الكلمار وأجنحته ثم تُجفف وتُقطع صغاراً. يُحضَّر الحشو من الأرز والبصل والمعدنوس والجبن البرمزان والبيض والهريسة والزعفران والفلفل. تُحشى أكياس الكلمار وتُخاط ثم تُطهى في صالصة الطماطم"
@@ -429,11 +372,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi",
-      "latin"
-    ],
+    "scripts": ["arabic", "arabizi", "latin"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "المقرونة magrona المعكرونة التونسية مطهوة في صالصة حمراء بالهريسة ومعجون الطماطم والبصل والثوم وتُقدَّم مع اللحم أو الدجاج المقرونة بالصالصة التونسية مختلفة عن أي باستا أخرى، الهريسة هي اللي تفرق طبق يومي شائع في الغداء أو العشاء، من أكثر الأكلات انتشاراً في تونس اليوم يُحمى الزيت ويُقلى البصل المفروم مع الهريسة ومعجون الطماطم والفلفل الزينة ثم يُضاف اللحم والماء. عند نضج اللحم تُسكب المقرونة وتُطهى في المرق. يُقدَّم مع الجبن المبشور"
@@ -454,10 +393,7 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الرشتة rechta معكرونة تونسية تقليدية تُصنع يدوياً على شكل شرائط رقيقة بيضاء، تُطهى فوق الكسكسي بالبخار وتُقدَّم مع اللحم الرشتة اللي تعملها أمي باليد أحلى بكثير من كل المقرونة المشتراة طبق تقليدي يُعدّ في المناسبات والأعياد، يتطلب وقتاً في الإعداد تُعجن الرشتة من الدقيق والبيض والماء وتُمد على هيئة شرائط رقيقة. تُكسَّر الرشتة قطعاً وتُوضع فوق الكسكسي في الكسكسية. تُطهى بالبخار ثم تُتبَّل بالسمن وتُقدَّم مع اللحم أو الدجاج"
@@ -465,7 +401,7 @@
   {
     "id": "food_019",
     "type": "food",
-    "term_arabic": "الأرز بالجلبانة",
+    "term_arabic": "الروز بالجلبانة",
     "term_arabizi": "roz bil jilbaana",
     "meaning": "أرز تونسي مطهو مع البازلاء الخضراء والبصل والزعفران والسمن ومعجون الطماطم",
     "meaning_fr": "Riz aux petits pois à la tunisienne",
@@ -478,10 +414,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الأرز بالجلبانة roz bil jilbaana أرز تونسي مطهو مع البازلاء الخضراء والبصل والزعفران والسمن ومعجون الطماطم الأرز بالجلبانة طبق الربيع الأحسن، لونه وطعمه يفتح النفس يُقدَّم كطبق رئيسي مع اللحم أو الدجاج، شائع في فصل الربيع حين تكثر البازلاء الطازجة تُقلى البازلاء والبصل في الزيت ثم يُضاف معجون الطماطم والزعفران والفلفل والملح. يُغمر الخليط بالماء ويُغطى الوعاء. يُسلق الأرز في الماء الغالي ثم يُصفى ويُضاف الأرز إلى البازلاء عند النضج ثم يُضاف السمن"
@@ -502,10 +435,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "التابل tabil خليط البهارات التونسي الخاص المصنوع من الكزبرة والكمون والفلفل الأحمر الحار والثوم المجفف بلا تابل ما يطيبش أي طبق تونسي، هو السر في الطعم المميز يُستخدم في تتبيل اللحوم والطواجن والأكلات التونسية المختلفة، من أهم مكونات المطبخ التونسي مركب تونسي مميز يُصنع بطحن الكزبرة مع بذور الكمون وبعض من الفلفل الأحمر الحار والثوم المجفف حتى يصبح ناعماً. يُستخدم كتابل في تتبيل جميع أنواع اللحوم والأسماك والدواجن"
@@ -526,10 +456,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الكمونية kamouniyya طاجن تونسي بالكمون يُطهى فيه اللحم أو الكبدة مع كميات كبيرة من الكمون والثوم والهريسة الكمونية بالكبدة هي وجبة ما تعملها إلا يوم عيد الأضحى عند الذبيحة يُعدّ تقليدياً يوم عيد الأضحى عند ذبح الأضحية، وكذلك كطبق يومي بالكبدة أو اللحم يُحمى الزيت ثم يُقلى اللحم أو الكبدة قطعاً ثم تُضاف الكروية والكمون الكثير والثوم والهريسة والماء. يُطهى على نار هادئة حتى ينضج اللحم وتتخثر الصالصة"
@@ -550,10 +477,7 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "البيسارة bsissa عجينة تونسية تقليدية مصنوعة من الشعير أو الحبوب المحمصة المطحونة مع التمر والزيت والعسل البسيسة طعام أجدادنا، ما يبقاش في عصرنا إلا كأكل الرياضيين والأصحاء طعام تقليدي يُعطى للرياضيين أو في موسم الحصاد أو كوجبة مغذية في الريف، يُؤكل في رمضان كسحور تُحمَّص الحبوب ثم تُطحن حتى تصبح دقيقاً ناعماً. تُضاف إليه التمر المهروس وزيت الزيتون وأحياناً العسل وبعض التوابل كالكمون ثم تُعجن"
@@ -574,10 +498,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "البنادق bnadeg كرات اللحم التونسية المقلية المصنوعة من اللحم المفروم والبصل والبيض والبقدونس والتوابل البنادق في المرق مع البطاطا هذا طبق العيلة يوم الجمعة تُضاف إلى المرق أو تُقلى وتُقدَّم منفردة، من الأكلات المحبوبة عند الأطفال يُفرم اللحم جيداً ويُضاف البصل المفروم والبيض والبقدونس والتوابل والهريسة والملح. تُشكَّل الكرات وتُقلى في الزيت أو تُضاف إلى المرق"
@@ -598,10 +519,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "المثوم mthawwem طبق تونسي مطهو بكميات وفيرة من الثوم، يكون اللحم أو الدجاج متبلاً ومشبعاً بنكهة الثوم الدجاج المثوم في الفرن ريحته تملأ الحارة كلها طريقة تحضير شائعة في المطبخ التونسي لتتبيل اللحوم والدواجن يُدلك اللحم أو الدجاج بعجينة الثوم المطحون مع الهريسة والكمون والملح ثم يُترك ليتشبع بالنكهات قبل الطهي"
@@ -622,10 +540,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الزلابية zlaabiyya حلوى تونسية رمضانية شهيرة مصنوعة من عجين مقلي في شكل دوائر ومغطى بالعسل أو شراب السكر ما يكملش رمضان بلا زلابية وعسل، هذا تقليد ما نتخلاوش عنه حلوى رمضانية تُصنع وتُباع في الشوارع طوال شهر رمضان، تُؤكل بعد الإفطار يُحضَّر عجين رقيق من الدقيق والماء والخميرة ثم يُترك ليختمر. يُسكب العجين في الزيت الحامي في شكل دوائر متشابكة ويُقلى حتى يصبح ذهبياً ثم يُنقع في شراب العسل أو السكر"
@@ -646,10 +561,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "المقروض maqroudh حلوى تونسية تقليدية بالتمر والسميد وزيت الزيتون مقلية ثم منقوعة في العسل المقروض من القيروان أشهر من نار على علم، لا تروح تونس بلاش تذوقه يُقدَّم في المناسبات والأعياد، ومن أشهر الحلوى التونسية المعروفة خارج تونس، والقيروان مشهورة بأحسن مقروض يُحضَّر من السميد وزيت الزيتون والسكر والماء الزهر. تُحشى بعجينة التمر المهروس مع ماء الزهر. تُقلى حتى تحمر ثم تُنقع في العسل الدافئ"
@@ -670,10 +582,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "السلاطة المشوية salaata mechwiyya سلاطة تونسية مطهوة من الطماطم والفلفل الحار والحلو والثوم المشوية على الجمر ثم تُهرس وتُتبَّل السلاطة المشوية ريحتها تصحي الميت، خاصة اللي تتعمل على الجمر تُقدَّم كمقبلات أساسية في المطاعم والبيوت التونسية، ومن أشهر الأطباق التونسية تُشوى الطماطم والفلفل الحار والحلو والثوم على الجمر أو في الفرن حتى تتسود قشرتها. تُقشَّر ثم تُقطع صغاراً أو تُهرس وتُتبَّل بالزيت والليمون والملح والكمون وأحياناً التن"
@@ -694,10 +603,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الطاجين التونسي taajin tunsi في تونس الطاجين يختلف عن المغربي، هو عبارة عن فطيرة لحم وبيض وجبن مخبوزة في الفرن الطاجين التونسي يخبز في الكانون، كل عيلة عندها وصفتها الخاصة يُعدّ في المناسبات والأعياد أو كوجبة رئيسية، ويختلف جوهرياً عن الطاجين المغربي يُحضَّر من اللحم المفروم أو القطع الصغيرة مع البصل والبقدونس والجبن والبيض والتوابل. تُوضع الخليط في صينية وتُخبز في الفرن حتى يتماسك الخليط ويحمر من الأعلى"
@@ -718,10 +624,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "المحلّبية mahlebiyya حلوى تونسية بيضاء كريمية مصنوعة من الحليب والنشاء أو السميد الرقيق وماء الزهر والسكر المحلبية بعد الكسكسي في ليالي الصيف هي الجنة، لطيفة وبايردة حلوى خفيفة تُقدَّم في نهاية الوجبات أو في المناسبات، شائعة في الصيف لأنها تُقدَّم باردة يُسخن الحليب مع السكر ثم يُضاف النشاء المذاب وماء الزهر وتُحرَّك حتى تتخثر ثم تُصب في أوعية وتُبرَّد وتُزيَّن بالفستق والقرفة"
@@ -742,10 +645,7 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "البرغل الجاري borghal jaari طبق تونسي تقليدي من البرغل الدقيق المطهو مع الفول والحمص والهريسة والكمون وزيت الزيتون البرغل الجاري هو أكلة الفلاحين الأصيلة، يشبع ويعطيك القوة طول النهار طبق شعبي ريفي تقليدي يُقدَّم إفطاراً أو غداءً خفيفاً، معروف في الأرياف التونسية بخاصة في موسم الحصاد يُنقى الحمص والفول ويُنقعان ليلة كاملة ثم يُطهيان. يُوضع البرغل بالزيت مع الثوم والكمون والهريسة"
@@ -766,15 +666,12 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "المحمص بالدبابيش mehemmes bil dbabish طبق تونسي من الحمص والفول والعدس المطهوة مع الهريسة والكروية والكبار والثوم المحمص بالدبابيش طبق المزيج، ما تلقاه إلا في البيوت التونسية الأصيلة يُقدَّم كإفطار دافئ أو وجبة خفيفة في الشتاء، من الأطباق الشعبية التي تجمع عدة أنواع من البقوليات"
   },
-   {
+  {
     "id": "food_032",
     "type": "food",
     "term_arabic": "عصيدة البطاطا",
@@ -790,10 +687,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "عصيدة البطاطا asida btataa عصيدة تونسية سميكة مصنوعة من البطاطا المسلوقة والمهروسة مع الحليب والزبدة والفلفل الأسود عصيدة البطاطا تُقدَّم عادةً مع اللحوم المشوية أو الدواجن تُقدَّم كطبق جانبي مع اللحوم والدواجن المصلية أو كوجبة وحدها للأطفال"
@@ -814,10 +708,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "صالصة الطماطم التونسية saalsa tmatem tunsiyya صالصة الطماطم الأساسية في المطبخ التونسي مع الهريسة والتابل والفلفل الزينة الصالصة التونسية هي القلب، بدونها ما تطيب لا المقرونة ولا اللحم ولا الخضر قاعدة أساسية تُستخدم في تحضير معظم الأطباق التونسية"
@@ -838,10 +729,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "طاجين الشكشوكة taajin chakchouka طاجين تونسي مخبوز يجمع بين الشكشوكة بالمرقاز والقديد واللحم المفروم والبيض والجبن طاجين الشكشوكة يجمع كل النكهات التونسية في طبق واحد يُعدَّ في المناسبات والغداء الجمعة كطبق رئيسي غني"
@@ -862,10 +750,7 @@
     "region": "tunis",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "طاجين الملسوقة taajin melsuuga طاجين تونسي بالعجين المورق يحشو بداخله اللحم والبطاطا والجبن واللوبيا والبيض طاجين الملسوقة هو ملك الطواجن يُقدَّم في المناسبات الكبرى والأعياد من أفخر الطواجن التونسية"
@@ -887,10 +772,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "السفايد sfayid brochettes مشاوي تونسية على أسياخ من قطع لحم الخروف أو البقر المتبلة بالزعفران والكمون السفايد من الجمر مع الخبز الطازج والهريسة هذا هو عيد الأضحى الحقيقي يُشوى على الجمر في العيد والمناسبات والمشاوي الشعبية"
@@ -911,10 +793,7 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "العلوش المشوي allouche mechwi الخروف كاملاً مشوياً في حفرة أرضية مملوءة بالجمر طريقة تقليدية عتيقة العلوش المشوي في الحفرة هو سيد المشاوي يُعدَّ في الأعراس والمناسبات الكبرى والأعياد"
@@ -935,10 +814,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الكفتة kafta أقراص أو أعواد اللحم المفروم التونسية بالبصل والمعدنوس والتوابل الكفتة بالصالصة مع البطاطا المقلية هذا هو الطبق اللي ما يرفضه حتى طبق يومي محبوب يُقدَّم مع الصالصة أو مع السلاطة"
@@ -959,10 +835,7 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "دجاج مكفن مع برودو الخضرة djaja mkafna maa brou lkhedra دجاج محشو بالخضر من كرفس وجزر ولفت وكراث يُطهى مع مرق الخضرة الدجاج المكفن بالخضرة طبق فيه الصحة والطعم معاً يُقدَّم كطبق رئيسي صحي في الغداء أو في حالات التعافي"
@@ -983,10 +856,7 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الحجل في الكوشة hagal fil koucha طير الحجل التونسي محمر في الفرن مع البطاطا وآلية الضأن والزبدة والزعفران الحجل في الكوشة طبق الصيد ما تذوقه في الأسواق لأنه يُصاد فقط طبق الصيد التقليدي يُعدَّ في المناطق الريفية"
@@ -1007,10 +877,7 @@
     "region": "gabes",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الغزال المشوي ghzaal mechwi لحم الغزال البري التونسي المشوي على الجمر بعد تتبيله بالكمون والزيت الغزال المشوي من الأكلات النادرة اللي تبقى في ذاكرتك طبق الصيد النادر يُعدَّ في المناطق الجنوبية التونسية"
@@ -1031,10 +898,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "سلاطة الفقوس salaata fguus سلاطة تونسية منعشة من الخيار مع الكبار والزيتون والخل والنعناع الجاف سلاطة الفقوس في الصيف تبرد القلب بسيطة وسريعة سلاطة صيفية خفيفة تُقدَّم كمقبلات في الحر"
@@ -1055,10 +919,7 @@
     "region": "tunis",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "سلاطة نية حلق salaata niyya 7alq سلاطة تونسية نيئة من الطماطم والفلفل والبصل والأنشوفة والزيتون الأسود السلاطة النية تاع حلق الوادي فيها الأنشوفة والبحر سلاطة مميزة من منطقة حلق الوادي تُقدَّم كمقبلات"
@@ -1079,10 +940,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "سلاطة أمك حورية salaata ommak 7ouriyya سلاطة تونسية مطبوخة من الجزر المسلوق بالزيتون والسردين والثوم والكروية سلاطة أمك حورية فيها كل شيء الجزر والسردين والزيتون سلاطة مطهوة تُقدَّم كمقبلات أو طبق جانبي"
@@ -1103,10 +961,7 @@
     "region": "tunis",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الكسكسي شتوي بالمرجان couscous chtawi bil merjaan كسكسي شتوي تونسي بالمرجان وهو نوع من الأسماك المتوسطة مع الجزر والبطاطا الكسكسي بالمرجان في البرد أحسن ما تتمنى كسكسي موسمي شتوي يُعدَّ في المدن الساحلية"
@@ -1127,10 +982,7 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الكسكسي بالورقة couscous bil worqa كسكسي تونسي خاص بالورقة وهي نوع من الزبيب الرفيع مع السفرجل والحمص الكسكسي بالورقة والسفرجل هو كسكسي الخريف كسكسي موسمي خريفي يُعدَّ حين يكثر السفرجل"
@@ -1151,10 +1003,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "المسفوف mesfouuf كسكسي حلو تونسي مُحضَّر بالبخار ثم يُسقى بالزيت ويُزيَّن بالفاكية المقلية والسكر المسفوف هو وجه الفرح في كل مناسبة تونسية يُقدَّم في نهاية الوجبات في الأعراس والمناسبات السعيدة"
@@ -1175,10 +1024,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الرفيسة rfissa حلوى تونسية من الكسكسي النملي بزيت الزيتون والسكر الدقيق ودقلة نور الرفيسة بدقلة نور أكلة تونسية أصيلة فيها الزيت والتمر والسمولة حلوى شعبية بسيطة تُقدَّم كوجبة خفيفة أو في المناسبات"
@@ -1199,10 +1045,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "العصيدة بالرغيدة asida bil rgheeda حلوى تونسية سميكة من السميد الرقيق والحليب والسكر وماء الورد العصيدة بالرغيدة في عيد الميلاد أو المولود الجديد هذا هو تقليدنا التونسي تُقدَّم في الاحتفال بمولد النبي أو عند ولادة مولود جديد"
@@ -1223,10 +1066,7 @@
     "region": "national",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الزرير التقليدي zrir taqlidii حلوى تونسية سائلة تقليدية من هريس الجلجلان مع العسل والسمن وعصير الليمون الزرير في الشتاء يعطيك الدفا تُحضَّر في فصل الشتاء وتُقدَّم كمشروب دافئ"
@@ -1247,10 +1087,7 @@
     "region": "tunis",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "البوزة bouza حلوى تونسية سائلة ثقيلة مصنوعة من البوفريوة وهو نوع من البندق مع الحليب والسكر البوزة من عند بائع الشارع في صيف العاصمة لحظة ما تنساها مشروب حلو ثقيل يُباع في الشوارع التونسية"
@@ -1271,10 +1108,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الغريبة ghribba بسكويت تونسي هش مصنوع من الدقيق أو الحمص أو السميد مع الزبدة والسكر يذوب في الفم الغريبة مع قهوة الصباح هذا هو الريوق المفضل لكثير من التونسيين بسكويت شعبي يُقدَّم مع الشاي أو القهوة"
@@ -1295,10 +1129,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الجوارش jwerch حلوى تونسية مصنوعة من اللوز أو البندق أو الفستق مع السكر القطر وماء الورد الجوارش باللوز هدية الأعراس التونسية يُقدَّم في الأعراس والمناسبات كهدية للضيوف"
@@ -1319,10 +1150,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "راحة الحلقوم raahet el7alquum حلوى تونسية هلامية شفافة من النشا والسكر المبلّر وماء الزهر وعصير الليمون والبندق راحة الحلقوم تذوب في فمك كأنها سحابة حلوى فاخرة تُقدَّم في الأعياد والمناسبات"
@@ -1343,14 +1171,12 @@
     "region": "tunis",
     "register": "informal",
     "generation": "older",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الزريقة zriiga حلوى تونسية من اللوز والبوفريوة والسكر المرحي مع ماء العطرشية في أوراق الملسوقة الزريقة حلوى الأعراس الأصيلة تجدها في كل مناسبة فرح تونسية تُقدَّم في الأعراس والمناسبات السعيدة"
-  },{
+  },
+  {
     "id": "food_056",
     "type": "ingredient",
     "term_arabic": "حبة حلاوة",
@@ -1366,14 +1192,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "حبة حلاوة hbat hlawa نبات عشبي من فصيلة الخيميات بذوره أصغر حجماً من بذور البسباس لونها أخضر طعمها مميز كطعم البسباس تستعمل كما يستعمل البسباس في الحلويات"
-  }, {
+  },
+  {
     "id": "food_057",
     "type": "ingredient",
     "term_arabic": "الحبق",
@@ -1389,14 +1213,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الحبق habaq الريحان الحلو الريحان الفاخر ريحان سليمان الحبق الملوكي نبات عطري يستعمل أوراقه في بعض السلاطات وخاصة لتفويح صالصة الطماطم المعدة للمقرونة المسلوقة"
-  },{
+  },
+  {
     "id": "food_058",
     "type": "ingredient",
     "term_arabic": "الخميرة",
@@ -1412,14 +1234,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الخميرة khmira نباتات فطرية تتكاثر بالتبرعم وتتفاعل مع النشويات تستعمل لتخمير عجينة الحلال وعجائن الفطائر والبولو والفرنيات وخبز البشكوطو والحلويات"
-  },{
+  },
+  {
     "id": "food_059",
     "type": "ingredient",
     "term_arabic": "إكليل الجبل",
@@ -1435,14 +1255,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "إكليل الجبل iklil jbal romarin أوراق صغيرة خيطية خضراء زيتونية تحوي زيتاً طياراً تستعمل لتفويح حليب الرائب والبن واللين والكسكاس واللحوم المطبوخة بالبخار"
-  },{
+  },
+  {
     "id": "food_060",
     "type": "ingredient",
     "term_arabic": "البسباس",
@@ -1458,10 +1276,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "البسباس bsbas الباديان الجاذبة الأنيسون النجمي أنيسون الصين نبات عشبي بذوره خضراء طعمه حلو محمض يستعمل لتفويح حشو الخبز الديار والمحليات والحلويات"
@@ -1482,14 +1297,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الزعفران zafran محصول مياسيم أزهار نبات بصلي يستعمل لتلوين الحلويات والدواجن والأسماك واللحوم المصلية ولتفويح مرقة الزعفرانية كالقلاية والكبامة"
-  },{
+  },
+  {
     "id": "food_062",
     "type": "ingredient",
     "term_arabic": "الزنجبيل",
@@ -1505,10 +1318,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الزنجبيل zanjabil السكنجبير نبات عشبي معمر جذاميره ذات طعم مفلفل يستعمل مسحوق الزنجبيل لتفويح حسو الدرع"
@@ -1529,10 +1339,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "السمن smen الزبدة المذابة المصفاة المحفوظة مع الملح ذات رائحة ونكهة مميزة يستعمل لتأسيس عجائن الحلويات وتفويح الأحسية والكسكسي والدواجن والأسماك المحشية ورفيسة الروز"
@@ -1553,10 +1360,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "السينوج sinouj الشونيز حبة البركة الحبة المباركة الكمون الأسود بذور سوداء دقيقة يستعمل لتفويح البسيسة والخبز الديار"
@@ -1577,15 +1381,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الشبت shabt أنيث نبات عشبي ذو مكونات عطرية يستعمل لتفويح القديد والمرقاز واللحوم المصلية والبنادق والمصلي والمشلوش والحسو والسدر والبرغل والمحمص"
   },
-   {
+  {
     "id": "food_066",
     "type": "ingredient",
     "term_arabic": "صالصة الخل",
@@ -1601,10 +1402,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "صالصة الخل salsat khall الصالصة التونسية خليط من الزيت والخل والملح والفلفل الأسود تقدم مع أغلب السلاطات وكثير من المقبلات"
@@ -1625,14 +1423,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "صالصة الهريسة salsat harissa تخفق الهريسة مع الزيت والمعدنوس المفروم تقدم مع المرقاز والكبدة واللحوم المشوية"
-  },{
+  },
+  {
     "id": "food_068",
     "type": "ingredient",
     "term_arabic": "الزهر",
@@ -1648,10 +1444,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الزهر zhar ماء الزهر ماء معطر من تقطير أزهار النارنج يستعمل لتفويح المسقوف والكريمة والمحلية والروز والدودية والحلويات وخبز البشكوطو والملبس والجوارش والطواجن"
@@ -1672,15 +1465,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "دهن القديد dhon qodid الإدام خليط من الودك والزيت يستعمل لتفويح العجة والشكشوكة والطبيخة والكسكسي والمشلوش والحسو والبرغل والمحمص والحلالم"
   },
-   {
+  {
     "id": "food_070",
     "type": "ingredient",
     "term_arabic": "رأس الحانوت",
@@ -1696,10 +1486,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "رأس الحانوت ras hanout خليط من الفلفل الأسود والقرفة والقرنفل وبتلات الورد يستعمل لتفويح طيور الصيد والأرانب البرية والمرزوزية والبندق"
@@ -1720,10 +1507,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الرند rand الغار أوراق عطرية تشوى مع السفافد والعلوش وتطهى في الملوخية والعقد وتفوح صالصة الطماطم المسلوق"
@@ -1744,14 +1528,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الفلفل الأسود folfol aswad البهار الفلفل الأكحل شجرة متسلقة ثمارها سوداء يستعمل في الأحسية والمقبلات والمحليات وتتبيل اللحوم والدواجن والأسماك"
-  },{
+  },
+  {
     "id": "food_073",
     "type": "ingredient",
     "term_arabic": "فلفل الزينة",
@@ -1767,14 +1549,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "فلفل الزينة folfol zina بابريكا فلفل أحمر مجفف مسحوق نوعان حار وحلو يستعمل لتلوين الأطعمة المطبوخة وتحريفها"
-  },{
+  },
+  {
     "id": "food_074",
     "type": "ingredient",
     "term_arabic": "القرفة",
@@ -1790,15 +1570,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "القرفة qorfa اللحاء الداخلي لأشجار الغاريات ذات رائحة طيبة وطعم عطري حار تستعمل في البهارات ورأس الحانوت والمحليات والحلويات كالمقروض والبندق"
   },
-   {
+  {
     "id": "food_075",
     "type": "ingredient",
     "term_arabic": "القرنفل",
@@ -1814,14 +1591,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "القرنفل qoronfol عود القرنفل كبش القرنفل براعم جافة طعمها حار مرغوب فيه يستعمل في رأس الحانوت وتفويح المحليات وحشو الحلويات"
-  },{
+  },
+  {
     "id": "food_076",
     "type": "ingredient",
     "term_arabic": "الكركم",
@@ -1837,14 +1612,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الكركم karkam زعفران الهند نبات عشبي جذوره صفراء تسحق وتستعمل لتلوين الأطرية وعجائن الحلويات"
-  },{
+  },
+  {
     "id": "food_077",
     "type": "ingredient",
     "term_arabic": "الكروية",
@@ -1860,14 +1633,12 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الكروية karwiya بذور خضراء زيتونية لها رائحة عطرية وطعم حار مزدوج حلو تستعمل كمركب في الهريسة والتابل وفي السلاطات والأحسية وكثير من الأكلات"
-  }, {
+  },
+  {
     "id": "food_078",
     "type": "ingredient",
     "term_arabic": "الكمون",
@@ -1883,10 +1654,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الكمون kamoun بذور دقيقة مضلعة ذات رائحة عطرية قوية وطعم حريف يستعمل لتفويح السمك والرخويات والبيصارة والكمونية واللبلابي والمدمس والبرغل"
@@ -1907,10 +1675,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الليمون limon القارص من الحمضيات يستعمل عصيره لتفويح المرقة والأحسية والمقبلات والبريك والدواجن والأسماك المشوية والمصلية ولتحسين لون المحليات والمحليات"
@@ -1931,10 +1696,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "النعناع naanaa نبات زراعي طيب الطعم والرائحة يستعمل طازجاً أو مسحوقاً لتفويح القديد والحلالم والمصلي والبنادق وحسو الخميرة والمشلوش والسدر والبرغل"
@@ -1955,10 +1717,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "العطرشية aatrchiya العتر العطر العترشاه نبات عشبي تقطر أوراقه ماء عطرياً مميزاً يستعمل كما يستعمل ماء الزهر في الحلويات"
@@ -1979,10 +1738,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "قديدة رأس العام qdida ras lam أكلة تونسية من القديد كتف ضان ورأس ضان مع الهريسة والثوم والنعناع والزيت والملح تستعمل في كسكسي رأس السنة الهجرية"
@@ -2003,10 +1759,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "العصبان المغلي aasbane maghli دوارة خروف وأفاد مع الهريسة والتابل والثوم والنعناع وفلفل الزينة والفلفل الأسود والملح والزيت أكلة شعبية تونسية من الأحشاء"
@@ -2027,10 +1780,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "القديد الغنمي qodid ghonmi قديد من لحم الضأن مع الهريسة والثوم والملح وألية الضأن والنعناع الجاف والزيت يجفف في الشمس ويحفظ طوال السنة للكسكسي والأحسية"
@@ -2051,10 +1801,7 @@
     "region": "national",
     "register": "informal",
     "generation": "all",
-    "scripts": [
-      "arabic",
-      "arabizi"
-    ],
+    "scripts": ["arabic", "arabizi"],
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الورد ward أزهار وردية تزرع في الحدائق وتقطر تبلاته بالبخار لاستخراج ماء الورد وزيت الورد يستعملان في تفويح المحليات والحلويات"
@@ -3381,7 +3128,26 @@
     "source": "kitab_altabkh_altunisi_alkawki",
     "last_updated": "2025-01-01",
     "embed_text": "الكسكسي بالعصبان الجاف couscous bil osban jaf كسكسي رأس العام التونسي بالقديد والعصبان والفول المجفف المنقوع كسكسي رأس العام هو كسكسي السنة بامتياز يُعدَّ خصيصاً في ليلة رأس السنة الهجرية"
+  },
+  {
+    "id": "food_149",
+    "type": "ingredient",
+    "term_arabic": "العظم/عظما",
+    "term_arabizi": "aadham/aadhaama",
+    "meaning": "عظم الدجاج، مكون أساسي في المطبخ التونسي يُستعمل في العجة والشكشوكة والبريك والطاجن والكريمة والحلويات",
+    "meaning_fr": "Morceaux de poulet, ingrédient fondamental de la cuisine tunisienne",
+    "example": "العظم في كل طبق تونسي تقريباً، ما يتم طبخ بلا عظم",
+    "usage_context": "يُستعمل في العجة والشكشوكة والبريك والطاجن والكريمة والحلويات، من أهم المكونات الأساسية في الطبخ التونسي",
+    "description": "عظم الدجاج الطازج، يُستعمل في معظم الأكلات التونسية الشعبية، غني بالبروتينات والمغذيات الأساسية",
+    "regional_variation": null,
+    "when_eaten": "في جميع الوجبات وطول السنة",
+    "similar_to": null,
+    "region": "national",
+    "register": "informal",
+    "generation": "all",
+    "scripts": ["arabic", "arabizi"],
+    "source": "kitab_altabkh_altunisi_alkawki",
+    "last_updated": "2025-05-22",
+    "embed_text": "العظم/عظما aadham/aadhaama عظم الدجاج مكون أساسي في المطبخ التونسي يُستعمل في العجة والشكشوكة والبريك والطاجن والكريمة والحلويات العظم في كل طبق تونسي تقريباً غني بالبروتينات والمغذيات"
   }
-
-
 ]

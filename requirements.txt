@@ -14,5 +14,3 @@ torch>=2.0.0
 accelerate>=0.27.0
 huggingface_hub>=0.21.0
 
-# Optional: 4-bit / 8-bit quantization (Linux/GPU only)
-# bitsandbytes>=0.43.0

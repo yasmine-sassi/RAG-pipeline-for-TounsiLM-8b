@@ -1,6 +1,6 @@
 def build_embed_text(entry: dict) -> str:
     if entry.get("embed_text"):
-        return entry["embed_text"]
+        return "passage: " + entry["embed_text"]
 
     entry_type = entry.get("type", "")
 
@@ -55,5 +55,10 @@ def build_embed_text(entry: dict) -> str:
         refs = entry.get("common_references", [])
         if isinstance(refs, list):
             parts.append(" ".join(refs))
+    elif entry_type == "color":
+        parts.extend([
+            entry.get("color_family", ""),
+            entry.get("cultural_significance", ""),
+        ])
 
-    return " ".join(p for p in parts if p and isinstance(p, str))
+    return "passage: " + " ".join(p for p in parts if p and isinstance(p, str))
