@@ -1,6 +1,11 @@
+import os
 import torch
 from typing import Optional
-from transformers import AutoTokenizer, AutoModelForCausalLM, GenerationConfig, BitsAndBytesConfig
+from transformers import AutoTokenizer, AutoModelForCausalLM, GenerationConfig
+
+# Reduces memory fragmentation on the CUDA allocator — helps when the KV cache
+# grows and freed blocks don't line up with new allocation sizes.
+os.environ.setdefault("PYTORCH_ALLOC_CONF", "expandable_segments:True")
 
 MODEL_ID = "alabenayed/TounsiLM-8b"
 
@@ -18,6 +23,16 @@ _DEFAULT_SYSTEM = (
     "إذا لم تكن الملاحظات ذات صلة، تجاهلها تماماً وأجب من معرفتك العامة. "
     "لا تسرد المصادر ولا تكرر محتوى الملاحظات — أجب بكلامك الخاص فقط."
 )
+
+
+def _load_model(model_id: str, device: str):
+    kwargs: dict = {"trust_remote_code": True}
+    if device == "cuda":
+        kwargs["torch_dtype"] = torch.float16
+        kwargs["device_map"] = "auto"
+    else:
+        kwargs["torch_dtype"] = torch.float32
+    return AutoModelForCausalLM.from_pretrained(model_id, **kwargs)
 
 
 class TounsiLM:
@@ -41,29 +56,16 @@ class TounsiLM:
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
 
-        model_kwargs: dict = {"trust_remote_code": True}
-
-        if device == "cuda":
-            model_kwargs["device_map"] = "auto"
-            model_kwargs["quantization_config"] = BitsAndBytesConfig(
-                load_in_4bit=True,
-                bnb_4bit_compute_dtype=torch.float16,
-                bnb_4bit_use_double_quant=True,
-                bnb_4bit_quant_type="nf4",
-            )
-        else:
-            model_kwargs["torch_dtype"] = torch.float32
-
-        print(f"Loading model: {model_id}  (device={device}, 4-bit quant={device == 'cuda'})")
-        self.model = AutoModelForCausalLM.from_pretrained(model_id, **model_kwargs)
+        print(f"Loading model: {model_id}  (device={device})")
+        self.model = _load_model(model_id, device)
 
         if device == "cpu":
             self.model = self.model.to(device)
 
         self.model.eval()
 
-        # Resolve where the model's first layer actually landed (device_map="auto"
-        # may offload layers to CPU even when CUDA is available).
+        # Use the actual device of the embedding layer, not self.device.
+        # With device_map="auto" some layers may land on CPU even when CUDA is available.
         self._input_device = next(self.model.parameters()).device
         print(f"Model ready.  (input device: {self._input_device})")
 
@@ -82,18 +84,21 @@ class TounsiLM:
     def generate(
         self,
         prompt: str,
-        max_new_tokens: int = 512,
+        max_new_tokens: int = 256,
         temperature: float = 0.7,
         top_p: float = 0.9,
         top_k: int = 50,
         repetition_penalty: float = 1.1,
     ) -> str:
+        if self._input_device.type == "cuda":
+            torch.cuda.empty_cache()
+
         inputs = self.tokenizer(
             prompt,
             return_tensors="pt",
             padding=True,
             truncation=True,
-            max_length=4096,
+            max_length=2048,   # hard cap to limit KV cache memory
         ).to(self._input_device)
 
         gen_config = GenerationConfig(
@@ -107,8 +112,6 @@ class TounsiLM:
             eos_token_id=self.tokenizer.eos_token_id,
         )
 
-        if self._input_device.type == "cuda":
-            torch.cuda.empty_cache()
         output_ids = self.model.generate(**inputs, generation_config=gen_config)
         new_ids = output_ids[0][inputs["input_ids"].shape[1]:]
         return self.tokenizer.decode(new_ids, skip_special_tokens=True).strip()
