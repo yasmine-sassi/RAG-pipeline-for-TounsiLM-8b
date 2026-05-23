@@ -14,6 +14,7 @@ class Retriever:
         self,
         chroma_dir: Optional[Path] = None,
         embedding_model: str = EMBEDDING_MODEL,
+        tokenizer=None,
     ):
         chroma_dir = chroma_dir or CHROMA_DIR
 
@@ -28,6 +29,7 @@ class Retriever:
             model_name=embedding_model
         )
         self._collection = client.get_collection(name=COLLECTION_NAME, embedding_function=ef)
+        self.tokenizer = tokenizer
 
     def retrieve(
         self,
@@ -58,24 +60,86 @@ class Retriever:
                 })
         return hits
 
-    def format_context(self, hits: list, max_chars: int = 2000) -> str:
+    def format_context(
+        self,
+        hits: list,
+        max_tokens: Optional[int] = None,
+        max_chars: Optional[int] = None,
+    ) -> str:
+        """
+        Format context from hits with relevance scores.
+        Uses token-based truncation if tokenizer is available and max_tokens is set,
+        otherwise falls back to character-based truncation.
+        """
+        if max_tokens is None and max_chars is None:
+            max_tokens = 1500  # Default token limit
+        
         lines = []
-        total = 0
+        total_tokens = 0
+        total_chars = 0
+        
         for hit in hits:
             meta = hit["metadata"]
+            score = hit.get("score", 0.0)
+            
+            # Build line with relevance score indicator
             line = (
-                f"[{meta.get('type')}] {meta.get('term_arabic')} ({meta.get('term_arabizi')})"
+                f"[{meta.get('type')} | score: {score}] {meta.get('term_arabic')} ({meta.get('term_arabizi')})"
                 f": {meta.get('meaning')}"
             )
             if meta.get("example"):
                 line += f" | مثال: {meta['example']}"
             if meta.get("usage_context"):
                 line += f" | الاستخدام: {meta['usage_context']}"
-            total += len(line)
-            if total > max_chars:
-                break
+            
+            # Check token-based limit if tokenizer available
+            if self.tokenizer and max_tokens is not None:
+                line_tokens = len(self.tokenizer.encode(line))
+                if total_tokens + line_tokens > max_tokens:
+                    break
+                total_tokens += line_tokens
+            # Otherwise check char-based limit
+            elif max_chars is not None:
+                if total_chars + len(line) > max_chars:
+                    break
+                total_chars += len(line)
+            
             lines.append(line)
+        
         return "\n".join(lines)
 
     def count(self) -> int:
         return self._collection.count()
+    
+    def calculate_relevance_score(self, hits: list) -> dict:
+        """
+        Calculate overall relevance metrics from retrieved hits.
+        Returns a dict with mean_score, max_score, min_score, and confidence_level.
+        """
+        if not hits:
+            return {
+                "mean_score": 0.0,
+                "max_score": 0.0,
+                "min_score": 0.0,
+                "num_results": 0,
+                "confidence_level": "none",
+            }
+        
+        scores = [hit.get("score", 0.0) for hit in hits]
+        mean_score = sum(scores) / len(scores)
+        
+        # Confidence levels based on mean relevance score
+        if mean_score >= 0.75:
+            confidence_level = "high"
+        elif mean_score >= 0.50:
+            confidence_level = "medium"
+        else:
+            confidence_level = "low"
+        
+        return {
+            "mean_score": round(mean_score, 4),
+            "max_score": round(max(scores), 4),
+            "min_score": round(min(scores), 4),
+            "num_results": len(hits),
+            "confidence_level": confidence_level,
+        }

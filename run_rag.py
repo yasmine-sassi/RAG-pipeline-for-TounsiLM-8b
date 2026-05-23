@@ -15,6 +15,7 @@ Options:
   --min-score F        Minimum similarity score 0–1 (default: 0.0)
   --max-tokens N       Max tokens to generate (default: 512)
   --temperature F      Sampling temperature (default: 0.7)
+  --max-context-tokens N   Max tokens for RAG context (default: 1500)
   --embedding-model M  HuggingFace embedding model (default: intfloat/multilingual-e5-base)
 
 Examples:
@@ -48,19 +49,32 @@ def cmd_index(args):
 
 
 def cmd_retrieve(args):
-    """Retrieve without generating. Good for validating KB quality."""
-    from rag_kb.pipeline.retriever import Retriever
+    """Retrieve without generating with relevance metrics."""
+    from rag_kb.pipeline.rag_pipeline import RAGPipeline
 
-    retriever = Retriever(embedding_model=args.embedding_model)
-    hits = retriever.retrieve(
-        query=args.retrieve,
+    pipeline = _build_pipeline(args)
+    result = pipeline.retrieve_only(
+        question=args.retrieve,
         top_k=args.top_k,
         entry_type=args.type,
         min_score=args.min_score,
     )
 
-    print(f"\nTop {len(hits)} results for: '{args.retrieve}'\n" + "─" * 60)
-    for i, hit in enumerate(hits, 1):
+    metrics = result["relevance_metrics"]
+    conf_icon = {"high": "🟢", "medium": "🟡", "low": "🔴", "none": "⚫"}.get(metrics["confidence_level"], "?")
+    
+    print(f"\nRetrieve results for: '{result['question']}'")
+    print(f"Confidence: {conf_icon} {metrics['confidence_level'].upper()}")
+    print(f"  Found: {metrics['num_results']} results")
+    print(f"  Scores: mean={metrics['mean_score']:.4f}, "
+          f"range=[{metrics['min_score']:.4f}–{metrics['max_score']:.4f}]")
+    print("─" * 60)
+    
+    if not result["hits"]:
+        print("No results found.")
+        return
+    
+    for i, hit in enumerate(result["hits"], 1):
         meta = hit["metadata"]
         print(
             f"{i}. [{meta.get('type')}] {meta.get('term_arabic')} "
@@ -83,6 +97,7 @@ def cmd_query(args):
         max_new_tokens=args.max_tokens,
         temperature=args.temperature,
         show_sources=True,
+        max_context_tokens=args.max_context_tokens,
     )
     _print_result(result)
 
@@ -141,6 +156,7 @@ def cmd_interactive(args):
             max_new_tokens=args.max_tokens,
             temperature=args.temperature,
             show_sources=show_sources,
+            max_context_tokens=args.max_context_tokens,
         )
         _print_result(result, verbose=show_sources)
 
@@ -161,8 +177,19 @@ def _build_pipeline(args):
 def _print_result(result: dict, verbose: bool = True):
     print("\n" + "═" * 60)
     print(f"Question : {result['question']}")
+    
+    # Display confidence level and relevance metrics
+    if "confidence_level" in result:
+        metrics = result["relevance_metrics"]
+        conf_icon = {"high": "🟢", "medium": "🟡", "low": "🔴", "none": "⚫"}.get(metrics["confidence_level"], "?")
+        print(f"Confidence: {conf_icon} {metrics['confidence_level'].upper()}")
+        print(f"  Relevance: mean={metrics['mean_score']:.4f}, "
+              f"range=[{metrics['min_score']:.4f}–{metrics['max_score']:.4f}], "
+              f"results={metrics['num_results']}")
+    
     print("─" * 60)
     print(f"Answer   :\n{result['answer']}")
+    
     if verbose and result.get("sources"):
         print("\nSources:")
         for hit in result["sources"]:
@@ -199,6 +226,13 @@ def main():
     # Generation options
     parser.add_argument("--max-tokens", type=int, default=512, metavar="N", help="Max tokens to generate")
     parser.add_argument("--temperature", type=float, default=0.7, metavar="F", help="Sampling temperature")
+    parser.add_argument(
+        "--max-context-tokens",
+        type=int,
+        default=1500,
+        metavar="N",
+        help="Max tokens for RAG context (default: 1500)",
+    )
 
     # Model options
     parser.add_argument(
