@@ -55,7 +55,11 @@ class TounsiLM:
             self.model = self.model.to(device)
 
         self.model.eval()
-        print("Model ready.")
+
+        # Resolve where the model's first layer actually landed (device_map="auto"
+        # may offload layers to CPU even when CUDA is available).
+        self._input_device = next(self.model.parameters()).device
+        print(f"Model ready.  (input device: {self._input_device})")
 
     def build_prompt(self, query: str, context: str = "") -> str:
         if context.strip():
@@ -84,7 +88,7 @@ class TounsiLM:
             padding=True,
             truncation=True,
             max_length=4096,
-        ).to(self.device)
+        ).to(self._input_device)
 
         gen_config = GenerationConfig(
             max_new_tokens=max_new_tokens,
@@ -97,7 +101,7 @@ class TounsiLM:
             eos_token_id=self.tokenizer.eos_token_id,
         )
 
-        if self.device == "cuda":
+        if self._input_device.type == "cuda":
             torch.cuda.empty_cache()
         output_ids = self.model.generate(**inputs, generation_config=gen_config)
         new_ids = output_ids[0][inputs["input_ids"].shape[1]:]
