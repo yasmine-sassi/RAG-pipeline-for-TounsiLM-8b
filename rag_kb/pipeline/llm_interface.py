@@ -1,6 +1,6 @@
 import torch
 from typing import Optional
-from transformers import AutoTokenizer, AutoModelForCausalLM, GenerationConfig
+from transformers import AutoTokenizer, AutoModelForCausalLM, GenerationConfig, BitsAndBytesConfig
 
 MODEL_ID = "alabenayed/TounsiLM-8b"
 
@@ -14,8 +14,9 @@ _PROMPT_TEMPLATE = (
 _DEFAULT_SYSTEM = (
     "أنت مساعد ذكي متخصص في اللهجة التونسية والثقافة التونسية. "
     "أجب على سؤال المستخدم مباشرةً بأسلوب طبيعي وواضح. "
-    "إذا أُعطيت معلومات مرجعية من قاعدة المعرفة، استخدمها كخلفية لصياغة إجابتك، "
-    "لكن لا تكتفِ بنسخها أو سردها كقائمة — اشرح بكلامك الخاص."
+    "إذا أُعطيت ملاحظات مرجعية، استخدمها فقط إذا كانت تتعلق مباشرةً بسؤال المستخدم. "
+    "إذا لم تكن الملاحظات ذات صلة، تجاهلها تماماً وأجب من معرفتك العامة. "
+    "لا تسرد المصادر ولا تكرر محتوى الملاحظات — أجب بكلامك الخاص فقط."
 )
 
 
@@ -40,15 +41,20 @@ class TounsiLM:
         if self.tokenizer.pad_token is None:
             self.tokenizer.pad_token = self.tokenizer.eos_token
 
-        model_kwargs = {
-            "trust_remote_code": True,
-            "torch_dtype": torch.float16 if device == "cuda" else torch.float32,
-        }
+        model_kwargs: dict = {"trust_remote_code": True}
 
         if device == "cuda":
             model_kwargs["device_map"] = "auto"
+            model_kwargs["quantization_config"] = BitsAndBytesConfig(
+                load_in_4bit=True,
+                bnb_4bit_compute_dtype=torch.float16,
+                bnb_4bit_use_double_quant=True,
+                bnb_4bit_quant_type="nf4",
+            )
+        else:
+            model_kwargs["torch_dtype"] = torch.float32
 
-        print(f"Loading model: {model_id}  (device={device})")
+        print(f"Loading model: {model_id}  (device={device}, 4-bit quant={device == 'cuda'})")
         self.model = AutoModelForCausalLM.from_pretrained(model_id, **model_kwargs)
 
         if device == "cpu":

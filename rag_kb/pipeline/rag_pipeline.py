@@ -49,7 +49,12 @@ class RAGPipeline:
         hits = self._multi_query_retrieve(question, effective_k, entry_type, min_score)
 
         relevance_metrics = self.retriever.calculate_relevance_score(hits)
-        context = self.retriever.format_context(hits, max_tokens=max_context_tokens)
+
+        # Only inject context when retrieval is confident enough to be useful.
+        # If no type was routed and mean score is below threshold, the KB likely
+        # returned keyword noise (e.g. proverbs matching a word in an off-domain query).
+        use_context = relevance_metrics["mean_score"] >= 0.60 or entry_type is not None
+        context = self.retriever.format_context(hits, max_tokens=max_context_tokens) if use_context else ""
         prompt = self.llm.build_prompt(question, context)
         answer = self.llm.generate(
             prompt=prompt,
