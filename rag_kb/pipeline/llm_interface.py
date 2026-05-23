@@ -97,6 +97,8 @@ class TounsiLM:
             eos_token_id=self.tokenizer.eos_token_id,
         )
 
+        if self.device == "cuda":
+            torch.cuda.empty_cache()
         output_ids = self.model.generate(**inputs, generation_config=gen_config)
         new_ids = output_ids[0][inputs["input_ids"].shape[1]:]
         return self.tokenizer.decode(new_ids, skip_special_tokens=True).strip()

@@ -30,7 +30,8 @@ class Retriever:
 
         client = chromadb.PersistentClient(path=str(chroma_dir))
         ef = embedding_functions.SentenceTransformerEmbeddingFunction(
-            model_name=embedding_model
+            model_name=embedding_model,
+            device="cpu",   # keep embedding model on CPU so TounsiLM-8b has full VRAM
         )
         self._collection = client.get_collection(name=COLLECTION_NAME, embedding_function=ef)
         self.tokenizer = tokenizer

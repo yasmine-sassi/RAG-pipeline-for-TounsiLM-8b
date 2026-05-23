@@ -42,7 +42,10 @@ def build_index(
     chroma_dir.mkdir(parents=True, exist_ok=True)
 
     client = chromadb.PersistentClient(path=str(chroma_dir))
-    ef = embedding_functions.SentenceTransformerEmbeddingFunction(model_name=embedding_model)
+    ef = embedding_functions.SentenceTransformerEmbeddingFunction(
+        model_name=embedding_model,
+        device="cpu",
+    )
 
     if reset:
         try:
