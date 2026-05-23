@@ -13,7 +13,9 @@ _PROMPT_TEMPLATE = (
 
 _DEFAULT_SYSTEM = (
     "أنت مساعد ذكي متخصص في اللهجة التونسية والثقافة التونسية. "
-    "أجب بدقة ووضوح. إذا أُعطيت معلومات من قاعدة المعرفة، استخدمها."
+    "أجب على سؤال المستخدم مباشرةً بأسلوب طبيعي وواضح. "
+    "إذا أُعطيت معلومات مرجعية من قاعدة المعرفة، استخدمها كخلفية لصياغة إجابتك، "
+    "لكن لا تكتفِ بنسخها أو سردها كقائمة — اشرح بكلامك الخاص."
 )
 
 
@@ -57,7 +59,11 @@ class TounsiLM:
 
     def build_prompt(self, query: str, context: str = "") -> str:
         if context.strip():
-            system = _DEFAULT_SYSTEM + "\n\nمعلومات من قاعدة المعرفة التونسية:\n" + context
+            system = (
+                _DEFAULT_SYSTEM
+                + "\n\n[ملاحظات مرجعية — استخدمها لتعزيز إجابتك، لا لنسخها]\n"
+                + context
+            )
         else:
             system = _DEFAULT_SYSTEM
         return _PROMPT_TEMPLATE.format(system=system, user=query)

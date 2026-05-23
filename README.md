@@ -211,18 +211,18 @@ Context is truncated at **1 500 tokens** using TounsiLM's own tokenizer.
 
 ### Entry types
 
-| Type | File | Count | Key extra fields |
-|---|---|---|---|
-| `expression` | expressions*.json | 83 | `origin`, `severity`, `gender_sensitive` |
-| `number_slang` | expressions2.json | 15 | `msa_equivalent` |
-| `proverb` | proverbs.json | 1 276 | `literal_meaning`, `real_meaning`, `when_used` |
-| `food` | food.json | 123 | `description`, `regional_variation`, `when_eaten` |
-| `ingredient` | food.json | 26 | (same as food) |
-| `ritual` | rituals.json | 26 | `occasion`, `tone`, `expected_response` |
-| `code_switch` | code-switching.json | 23 | `origin_language`, `origin_word`, `domain` |
-| `tv_series` / `movie` / `film` | series_movies.json | 20 | `era`, `cultural_significance`, `common_references` |
-| `color` | colors.json | 20 | `color_family`, `cultural_significance` |
-| **Total** | | **1 647** | |
+| Type                          | File                  | Count    | Key extra fields                                    |
+| ----------------------------- | --------------------- | -------- | --------------------------------------------------- |
+| `expression`                  | expressions\*.json    | 83       | `origin`, `severity`, `gender_sensitive`            |
+| `number_slang`                | expressions2.json     | 15       | `msa_equivalent`                                    |
+| `proverb`                     | proverbs.json         | 1 276    | `literal_meaning`, `real_meaning`, `when_used`      |
+| `food`                        | food.json             | 123      | `description`, `regional_variation`, `when_eaten`   |
+| `ingredient`                  | food.json             | 26       | (same as food)                                      |
+| `ritual`                      | rituals.json          | 26       | `occasion`, `tone`, `expected_response`             |
+| `code_switch`                 | code-switching.json   | 23       | `origin_language`, `origin_word`, `domain`          |
+| `tv_series` / `movie` / `film`| series_movies.json    | 20       | `era`, `cultural_significance`, `common_references` |
+| `color`                       | colors.json           | 20       | `color_family`, `cultural_significance`             |
+| **Total**                     |                       | **1 647**|                                                     |
 
 ### Validation
 
@@ -261,9 +261,9 @@ The notebook tests the query rewriter, BM25 vs semantic comparison, retrieval-on
 
 ## Hardware
 
-| Setup | VRAM needed |
-|---|---|
-| CPU only (slow) | — |
-| GPU full precision | ~16 GB |
+| Setup              | VRAM needed |
+| ------------------ | ----------- |
+| CPU only (slow)    | —           |
+| GPU full precision | ~16 GB      |
 
 Kaggle T4 (16 GB) is the recommended free-tier environment.

@@ -44,47 +44,52 @@ Figure~\ref{fig:rag_pipeline}.
 \begin{figure}[htbp]
 \centering
 \begin{tikzpicture}[
-    node distance=0.9cm and 1.8cm,
     box/.style={rectangle, rounded corners=4pt, draw=black!70, fill=blue!8,
                 minimum width=3.0cm, minimum height=0.85cm, align=center, font=\small},
     newbox/.style={rectangle, rounded corners=4pt, draw=black!70, fill=purple!10,
                 minimum width=3.0cm, minimum height=0.85cm, align=center, font=\small},
     store/.style={cylinder, shape border rotate=90, draw=black!70, fill=orange!12,
-                  minimum width=2.4cm, minimum height=1.0cm, align=center, font=\small},
+                  minimum width=2.2cm, minimum height=1.3cm, align=center, font=\small},
     arrow/.style={-Stealth, thick},
-    label/.style={font=\footnotesize\itshape, text=gray}
+    dasharrow/.style={-Stealth, thick, dashed},
+    lbl/.style={font=\footnotesize\itshape, text=gray}
 ]
 
-% Inference flow
-\node[box]    (query)   {User query\\(Arabic / Arabizi / French)};
-\node[newbox, right=of query]   (rewriter) {Query Rewriter\\+ Type Router};
-\node[newbox, right=of rewriter](hybrid)   {Hybrid Retrieval\\BM25 + Semantic};
-\node[store,  below=of hybrid]  (chroma)   {ChromaDB\\(vectors)};
-\node[box,    left=of chroma]   (merge)    {Multi-query merge\\(best score)};
-\node[box,    left=of merge]    (context)  {Context\\formatting};
-\node[box,    below=of context] (llm)      {TounsiLM-8b\\(generation)};
-\node[box,    below=of llm]     (answer)   {Answer +\\confidence level};
+%--- Top row: inference flow (left -> right) ---%
+\node[box]    (query)    at ( 0.0,  0.0) {User query\\{\small Arabic/Arabizi/French}};
+\node[newbox] (rewriter) at ( 4.0,  0.0) {Query Rewriter\\+ Type Router};
+\node[newbox] (hybrid)   at ( 8.0,  0.0) {Hybrid Retrieval\\BM25 + Semantic};
+\node[store]  (chroma)   at (11.5,  0.0) {ChromaDB\\(vectors)};
 
-% Arrows — inference
-\draw[arrow] (query)    -- (rewriter);
-\draw[arrow] (rewriter) -- node[above,label]{variants} (hybrid);
-\draw[arrow] (hybrid)   -- (chroma);
-\draw[arrow] (chroma)   -- (hybrid);
-\draw[arrow] (hybrid)   -| (merge);
-\draw[arrow] (merge)    -- (context);
-\draw[arrow] (context)  -- (llm);
-\draw[arrow] (query)    |- (llm);
-\draw[arrow] (llm)      -- (answer);
+%--- Bottom row: inference flow (right -> left) ---%
+\node[box]    (merge)    at (11.5, -3.2) {Multi-query merge\\(best score)};
+\node[box]    (context)  at ( 8.0, -3.2) {Context\\formatting};
+\node[box]    (llm)      at ( 4.0, -3.2) {TounsiLM-8b\\(generation)};
+\node[box]    (answer)   at ( 0.0, -3.2) {Answer +\\confidence level};
 
-% Index path (dashed)
-\node[box, above=1.3cm of chroma, fill=green!8] (indexer) {Indexing\\(\texttt{passage:})};
-\node[box, right=of indexer, fill=green!8]       (kb)      {Knowledge base\\(JSON --- 1{,}647 entries)};
-\draw[arrow, dashed] (kb)      -- (indexer);
-\draw[arrow, dashed] (indexer) -- node[right,label]{index} (chroma);
+%--- Indexing column above ChromaDB (dashed) ---%
+\node[box, fill=green!8] (indexer) at (11.5,  1.8) {Indexing\\(\texttt{passage:})};
+\node[box, fill=green!8] (kb)      at (11.5,  3.3) {Knowledge base\\(JSON --- 1{,}647 entries)};
+
+%--- Inference arrows ---%
+\draw[arrow] (query)         -- (rewriter);
+\draw[arrow] (rewriter)      -- node[above, lbl]{variants} (hybrid);
+\draw[arrow] (hybrid)        -- (chroma);
+\draw[arrow] (chroma.south)  -- (merge.north);
+\draw[arrow] (merge)         -- (context);
+\draw[arrow] (context)       -- (llm);
+\draw[arrow] (llm)           -- (answer);
+% Original question fed directly to LLM (left-side bypass)
+\draw[arrow] (query.west) -- ++(-0.45,0) |- (llm.west);
+
+%--- Indexing arrows ---%
+\draw[dasharrow] (kb)      -- (indexer);
+\draw[dasharrow] (indexer) -- node[right, lbl]{index} (chroma.north);
 
 \end{tikzpicture}
 \caption{RAG pipeline architecture. Purple boxes are newly introduced components.
-The dashed path is the one-time indexing phase; the solid path is the inference flow.}
+Dashed path: one-time indexing phase. Solid path: inference flow.
+The left-side arrow shows the original query fed directly to TounsiLM-8b alongside the retrieved context.}
 \label{fig:rag_pipeline}
 \end{figure}
 
