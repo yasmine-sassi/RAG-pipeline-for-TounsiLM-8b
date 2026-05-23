@@ -1,0 +1,396 @@
+% ============================================================
+%  Section: RAG Module — TounsiLM
+%  Include in the main document with:
+%    \input{rapport_rag_section}
+%  Required packages in the preamble:
+%    \usepackage[utf8]{inputenc}
+%    \usepackage[T1]{fontenc}
+%    \usepackage[english]{babel}
+%    \usepackage{graphicx}
+%    \usepackage{booktabs}
+%    \usepackage{tabularx}
+%    \usepackage{listings}
+%    \usepackage{xcolor}
+%    \usepackage{tikz}
+%    \usetikzlibrary{shapes.geometric, arrows.meta, positioning, fit}
+%    \usepackage{amsmath}
+%    \usepackage{hyperref}
+% ============================================================
+
+\section{Retrieval-Augmented Generation (RAG) Module}
+\label{sec:rag}
+
+\subsection{Introduction and Motivation}
+
+Large language models (LLMs) suffer from a fundamental limitation: their knowledge is
+frozen at training time and does not cover niche domains or low-resource languages.
+Tunisian Arabic (\textit{Tounsi}) is precisely such a domain — poorly documented,
+rich in loanwords from French, Classical Arabic and Berber, and subject to strong
+regional and generational variation.
+
+To address this limitation, we integrated a \textbf{Retrieval-Augmented Generation (RAG)}
+module into the \textbf{TounsiLM-8b} model. The core idea is straightforward: before
+generating a response, the system dynamically \textit{retrieves} the most relevant
+entries from a specialized knowledge base and injects them into the LLM's context.
+This grounds the generation in verified facts without requiring any retraining of the model.
+
+% -------------------------------------------------------
+\subsection{Overall Architecture}
+\label{subsec:architecture}
+
+The RAG pipeline is composed of six main stages, illustrated in
+Figure~\ref{fig:rag_pipeline}.
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}[
+    node distance=0.9cm and 1.8cm,
+    box/.style={rectangle, rounded corners=4pt, draw=black!70, fill=blue!8,
+                minimum width=3.0cm, minimum height=0.85cm, align=center, font=\small},
+    newbox/.style={rectangle, rounded corners=4pt, draw=black!70, fill=purple!10,
+                minimum width=3.0cm, minimum height=0.85cm, align=center, font=\small},
+    store/.style={cylinder, shape border rotate=90, draw=black!70, fill=orange!12,
+                  minimum width=2.4cm, minimum height=1.0cm, align=center, font=\small},
+    arrow/.style={-Stealth, thick},
+    label/.style={font=\footnotesize\itshape, text=gray}
+]
+
+% Inference flow
+\node[box]    (query)   {User query\\(Arabic / Arabizi / French)};
+\node[newbox, right=of query]   (rewriter) {Query Rewriter\\+ Type Router};
+\node[newbox, right=of rewriter](hybrid)   {Hybrid Retrieval\\BM25 + Semantic};
+\node[store,  below=of hybrid]  (chroma)   {ChromaDB\\(vectors)};
+\node[box,    left=of chroma]   (merge)    {Multi-query merge\\(best score)};
+\node[box,    left=of merge]    (context)  {Context\\formatting};
+\node[box,    below=of context] (llm)      {TounsiLM-8b\\(generation)};
+\node[box,    below=of llm]     (answer)   {Answer +\\confidence level};
+
+% Arrows — inference
+\draw[arrow] (query)    -- (rewriter);
+\draw[arrow] (rewriter) -- node[above,label]{variants} (hybrid);
+\draw[arrow] (hybrid)   -- (chroma);
+\draw[arrow] (chroma)   -- (hybrid);
+\draw[arrow] (hybrid)   -| (merge);
+\draw[arrow] (merge)    -- (context);
+\draw[arrow] (context)  -- (llm);
+\draw[arrow] (query)    |- (llm);
+\draw[arrow] (llm)      -- (answer);
+
+% Index path (dashed)
+\node[box, above=1.3cm of chroma, fill=green!8] (indexer) {Indexing\\(\texttt{passage:})};
+\node[box, right=of indexer, fill=green!8]       (kb)      {Knowledge base\\(JSON --- 1{,}647 entries)};
+\draw[arrow, dashed] (kb)      -- (indexer);
+\draw[arrow, dashed] (indexer) -- node[right,label]{index} (chroma);
+
+\end{tikzpicture}
+\caption{RAG pipeline architecture. Purple boxes are newly introduced components.
+The dashed path is the one-time indexing phase; the solid path is the inference flow.}
+\label{fig:rag_pipeline}
+\end{figure}
+
+% -------------------------------------------------------
+\subsection{Knowledge Base}
+\label{subsec:kb}
+
+The knowledge base consists of JSON files organized by semantic category.
+Every entry is validated against a Pydantic schema before indexing, ensuring
+data integrity throughout the pipeline.
+
+\subsubsection{Entry Types}
+
+Table~\ref{tab:types} summarizes the eleven supported entry types, their associated
+Pydantic schema, and the type-specific fields they introduce beyond the base schema.
+
+\begin{table}[htbp]
+\centering
+\renewcommand{\arraystretch}{1.25}
+\begin{tabularx}{\textwidth}{@{} l l X @{}}
+\toprule
+\textbf{Type} & \textbf{Schema} & \textbf{Type-specific fields} \\
+\midrule
+\texttt{expression}    & \texttt{ExpressionEntry}   & \texttt{origin}, \texttt{severity}, \texttt{gender\_sensitive} \\
+\texttt{number\_slang} & \texttt{NumberSlangEntry}  & \texttt{msa\_equivalent} \\
+\texttt{proverb}       & \texttt{ProverbEntry}      & \texttt{literal\_meaning}, \texttt{real\_meaning}, \texttt{when\_used}, \texttt{msa\_equivalent} \\
+\texttt{food}          & \texttt{FoodEntry}         & \texttt{description}, \texttt{regional\_variation}, \texttt{when\_eaten}, \texttt{similar\_to} \\
+\texttt{ingredient}    & \texttt{FoodEntry}         & (same as \texttt{food}) \\
+\texttt{ritual}        & \texttt{RitualEntry}       & \texttt{occasion}, \texttt{expected\_response}, \texttt{tone} \\
+\texttt{code\_switch}  & \texttt{CodeSwitchEntry}   & \texttt{origin\_language}, \texttt{origin\_word}, \texttt{tunisian\_equivalent}, \texttt{domain} \\
+\texttt{tv\_series}    & \texttt{MediaEntry}        & \texttt{channel\_platform}, \texttt{era}, \texttt{cultural\_significance}, \texttt{common\_references} \\
+\texttt{movie}         & \texttt{MediaEntry}        & (same as \texttt{tv\_series}) \\
+\texttt{film}          & \texttt{MediaEntry}        & (same as \texttt{tv\_series}) \\
+\texttt{color}         & \texttt{ColorEntry}        & \texttt{color\_family}, \texttt{cultural\_significance} \\
+\bottomrule
+\end{tabularx}
+\caption{Knowledge base entry types and their Pydantic schemas.}
+\label{tab:types}
+\end{table}
+
+\subsubsection{Base Schema}
+
+All types inherit from \texttt{BaseEntry}, which enforces the following common fields:
+\texttt{id}, \texttt{type}, \texttt{term\_arabic}, \texttt{term\_arabizi}, \texttt{meaning},
+\texttt{meaning\_fr} (optional), \texttt{example}, \texttt{usage\_context},
+\texttt{region}, \texttt{register}, \texttt{generation}, \texttt{scripts},
+\texttt{source}, and \texttt{last\_updated}.
+
+\subsubsection{Data Volume}
+
+The current version of the knowledge base contains \textbf{1,647 valid entries}
+across 9 JSON files, covering idiomatic expressions, proverbs, gastronomy, social
+rituals, French--Arabic code-switching, media culture, and colors in the Tunisian dialect.
+
+% -------------------------------------------------------
+\subsection{Indexing Pipeline}
+\label{subsec:indexing}
+
+Indexing is performed in two steps: embedding text construction and insertion into
+the vector store.
+
+\subsubsection{Embedding Text Construction}
+
+The \texttt{build\_embed\_text} module constructs a text for each entry by concatenating
+its most informative fields. The selected fields vary by type: for a proverb,
+\texttt{literal\_meaning} and \texttt{real\_meaning} are appended; for a
+\texttt{code\_switch} entry, \texttt{origin\_language} and \texttt{tunisian\_equivalent}
+are added.
+
+Following the recommendations of the \texttt{multilingual-e5} model, every indexed
+text is prefixed with \texttt{"passage: "}:
+
+\begin{equation}
+    t_{\text{index}} = \texttt{"passage: "} \;\|\; \bigoplus_{i} \text{field}_i
+    \label{eq:passage_prefix}
+\end{equation}
+
+\noindent where $\|$ denotes concatenation and $\bigoplus$ the union of relevant fields.
+This asymmetric prefix (\texttt{"passage:"} at indexing time, \texttt{"query:"} at
+retrieval time) is essential for correctly exploiting the model's embedding space.
+
+\subsubsection{Vector Store}
+
+Vectors are persisted in \textbf{ChromaDB} using cosine similarity as the distance
+metric. Indexing is incremental: identifiers already present in the collection are
+skipped during updates. A deduplication mechanism using a \texttt{seen\_ids} set
+prevents ID collisions across distinct JSON files.
+
+% -------------------------------------------------------
+\subsection{Query Rewriting and Routing}
+\label{subsec:rewriting}
+
+Arabizi --- the Latin-script transcription of Arabic widely used in online communication ---
+has no standardized spelling. The same word can appear as \textit{barcha},
+\textit{barca}, or \textit{bar5a}; \textit{7amra} and \textit{hamra} denote the same
+color. A single query formulation therefore risks missing relevant entries that were
+indexed under a different spelling.
+
+\subsubsection{Query Rewriting}
+
+The \texttt{QueryRewriter} module addresses this by generating up to three variants
+of each query before retrieval:
+
+\begin{enumerate}
+    \item \textbf{Original query} --- preserved as-is.
+    \item \textbf{Arabizi-normalized variant} --- common digit-to-letter substitutions
+    are applied (Table~\ref{tab:arabizi}), converting e.g.\ \textit{7amra} to
+    \textit{hamra} and \textit{5adra} to \textit{khadra}.
+    \item \textbf{Cleaned variant} --- punctuation is stripped to handle
+    question marks, commas, and Arabic \textit{tatweel}.
+\end{enumerate}
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{} c c l @{}}
+\toprule
+\textbf{Digit} & \textbf{Replacement} & \textbf{Arabic phoneme} \\
+\midrule
+3 & a        & ayn \\
+7 & h        & ha \\
+5 & kh       & kha \\
+9 & q        & qaf \\
+8 & gh       & ghain \\
+2 & (dropped) & hamza \\
+\bottomrule
+\end{tabular}
+\caption{Arabizi digit-to-letter normalization rules applied by the query rewriter.}
+\label{tab:arabizi}
+\end{table}
+
+Each variant is retrieved independently. Results are then merged by keeping the
+highest score for each document across all variants:
+
+\begin{equation}
+    s^*(d) = \max_{v \in \mathcal{V}} s(d, v)
+    \label{eq:multiquery_merge}
+\end{equation}
+
+\noindent where $\mathcal{V}$ is the set of query variants and $s(d,v)$ is the
+RRF-fused score of document $d$ for variant $v$.
+
+\subsubsection{Query Routing}
+
+The same \texttt{QueryRewriter} module inspects the query for type-specific keywords
+and automatically sets the \texttt{entry\_type} filter before retrieval. For example,
+a query containing \textit{harissa}, \textit{food}, or the Arabic term for cooking
+routes to \texttt{entry\_type="food"}, restricting the search space to the relevant
+category. This improves both precision and speed without any user intervention.
+
+% -------------------------------------------------------
+\subsection{Hybrid Retrieval}
+\label{subsec:retrieval}
+
+Retrieval combines two complementary methods: dense semantic search and sparse
+keyword search (BM25). Each handles a different failure mode of the other.
+
+\subsubsection{Semantic Retrieval}
+
+At inference time, the query variant is prefixed with \texttt{"query: "} and encoded
+by \texttt{multilingual-e5-base}:
+
+\begin{equation}
+    \mathbf{q} = \text{Encode}\!\left(\texttt{"query: "} \| q\right)
+    \label{eq:query_encode}
+\end{equation}
+
+ChromaDB computes cosine similarity between $\mathbf{q}$ and all indexed passage
+vectors, returning $3k$ candidates to leave room for RRF re-ordering. The relevance
+score is:
+
+\begin{equation}
+    s_{\text{sem}}(d) = 1 - d_{\cos}(\mathbf{q},\, \mathbf{p}_d)
+    \label{eq:sem_score}
+\end{equation}
+
+\subsubsection{BM25 Retrieval}
+
+A \textbf{BM25Okapi} index is built at startup over all 1,647 documents (stripped of
+the \texttt{"passage: "} prefix). At query time, BM25 scores are normalized to $[0,1]$:
+
+\begin{equation}
+    s_{\text{BM25}}(d) = \frac{\text{BM25}(q, d)}{\max_{d'} \text{BM25}(q, d')}
+    \label{eq:bm25_score}
+\end{equation}
+
+BM25 excels at exact term matches --- when a user types a precise Arabizi word or a
+French loanword that dense embeddings might misplace in the embedding space.
+
+\subsubsection{Reciprocal Rank Fusion}
+
+The two ranked lists are merged using \textbf{Reciprocal Rank Fusion (RRF)} with
+per-source weights:
+
+\begin{equation}
+    \text{RRF}(d) = \frac{w_{\text{sem}}}{k_0 + r_{\text{sem}}(d)}
+                  + \frac{w_{\text{BM25}}}{k_0 + r_{\text{BM25}}(d)}
+    \label{eq:rrf}
+\end{equation}
+
+\noindent where $r_i(d)$ is the rank of document $d$ in ranking $i$ (1-indexed),
+$k_0 = 60$ is the RRF smoothing constant, $w_{\text{sem}} = 0.6$ and
+$w_{\text{BM25}} = 0.4$. The final score is normalized to $[0,1]$ and the top-$k$
+documents are returned.
+
+% -------------------------------------------------------
+\subsection{Confidence Scoring}
+\label{subsec:confidence}
+
+After retrieval, an overall confidence score is computed from the mean of the
+RRF-normalized scores:
+
+\begin{equation}
+    \bar{s} = \frac{1}{k} \sum_{i=1}^{k} s_i
+    \label{eq:mean_score}
+\end{equation}
+
+The confidence level is then assigned according to three tiers:
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{} c l l @{}}
+\toprule
+\textbf{Indicator} & \textbf{Level} & \textbf{Condition} \\
+\midrule
+\textcolor{green!60!black}{$\bullet$} & High   & $\bar{s} \geq 0.75$ \\
+\textcolor{orange}{$\bullet$}         & Medium & $0.50 \leq \bar{s} < 0.75$ \\
+\textcolor{red}{$\bullet$}            & Low    & $\bar{s} < 0.50$ \\
+$\bullet$                             & None   & no results returned \\
+\bottomrule
+\end{tabular}
+\caption{Confidence levels based on the mean RRF score $\bar{s}$.}
+\label{tab:confidence}
+\end{table}
+
+% -------------------------------------------------------
+\subsection{Context Formatting}
+\label{subsec:context}
+
+The retrieved entries are formatted into a structured text block injected into the
+LLM prompt. Each line follows the format:
+
+\begin{quote}
+\texttt{[type | score: \textit{s}] arabic\_term (arabizi) : meaning | \textnormal{مثال:} example | \textnormal{الاستخدام:} context}
+\end{quote}
+
+To avoid exceeding the model's context window (4,096 tokens), truncation is performed
+at the token level using the TounsiLM-8b tokenizer, with a default limit of
+\textbf{1,500 tokens} for the retrieved context.
+
+% -------------------------------------------------------
+\subsection{TounsiLM-8b Interface}
+\label{subsec:llm}
+
+The \textbf{TounsiLM-8b} model (\texttt{alabenayed/TounsiLM-8b}) is an 8-billion-parameter
+LLM fine-tuned for understanding and generating Tunisian dialect using the
+Llama-2 instruction format. The configurable generation parameters are summarized
+in Table~\ref{tab:gen_params}.
+
+\begin{table}[htbp]
+\centering
+\begin{tabular}{@{} l c l @{}}
+\toprule
+\textbf{Parameter}         & \textbf{Default} & \textbf{Role} \\
+\midrule
+\texttt{max\_new\_tokens}    & 512   & Maximum response length \\
+\texttt{temperature}         & 0.7   & Creativity / diversity of generated text \\
+\texttt{top\_p}              & 0.9   & Nucleus sampling \\
+\texttt{top\_k}              & 50    & Top-$k$ sampling \\
+\texttt{repetition\_penalty} & 1.1   & Repetition penalty \\
+\bottomrule
+\end{tabular}
+\caption{TounsiLM-8b generation parameters.}
+\label{tab:gen_params}
+\end{table}
+
+% -------------------------------------------------------
+\subsection{Summary and Future Work}
+\label{subsec:summary}
+
+The developed RAG module brings several contributions to the TounsiLM system:
+
+\begin{itemize}
+    \item \textbf{Factual grounding}: responses are enriched with definitions,
+    examples, and usage contexts drawn directly from the knowledge base, reducing
+    hallucinations on dialectal vocabulary.
+
+    \item \textbf{Arabizi robustness}: the query rewriter normalizes digit-based
+    Arabizi spellings and generates multiple query variants, significantly improving
+    recall for non-standard user inputs.
+
+    \item \textbf{Hybrid precision}: combining BM25 and semantic search via RRF
+    captures both exact keyword matches and semantic similarity, outperforming
+    either method alone.
+
+    \item \textbf{Automatic routing}: type-keyword detection routes queries to the
+    appropriate KB category without user intervention, improving precision on
+    domain-specific questions.
+
+    \item \textbf{Extensibility}: adding a new data type requires only creating a
+    Pydantic schema and a single line in the \texttt{SCHEMA\_MAP} dispatch table.
+
+    \item \textbf{Transparency}: confidence level and sources are systematically
+    exposed to the user, facilitating qualitative evaluation of responses.
+\end{itemize}
+
+Among the planned improvements are a \textbf{re-ranking} step using a cross-encoder
+to further refine the top-$k$ results before generation, and a
+\textbf{history-aware} conversational wrapper to maintain context across multiple
+turns in interactive mode.

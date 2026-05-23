@@ -1,42 +1,60 @@
 # RAG Pipeline for TounsiLM-8b
 
-A Retrieval-Augmented Generation (RAG) system built on a Tunisian Arabic knowledge base, designed to improve [`alabenayed/TounsiLM-8b`](https://huggingface.co/alabenayed/TounsiLM-8b).
+A Retrieval-Augmented Generation (RAG) system built on a structured Tunisian Arabic knowledge base, designed to ground [`alabenayed/TounsiLM-8b`](https://huggingface.co/alabenayed/TounsiLM-8b) in verified dialectal knowledge.
 
-## Structure
+## Features
+
+- **Hybrid retrieval** — BM25 (40%) + semantic embeddings (60%) merged via Reciprocal Rank Fusion
+- **Query rewriting** — generates up to 3 query variants with Arabizi digit normalization (`7→h`, `5→kh`, `3→a` …)
+- **Automatic query routing** — detects entry type from the query and restricts search to the relevant category
+- **Confidence scoring** — high / medium / low signal per query based on mean retrieval score
+- **Token-based context truncation** — uses TounsiLM's tokenizer to stay within the 4 096-token context window
+- **Typed knowledge base** — 1 647 entries across 11 validated types, each with a Pydantic schema
+
+## Project Structure
 
 ```
 RAG/
-├── run_rag.py                     # CLI entry point
-├── requirements.txt               # Dependencies
+├── run_rag.py                        # CLI entry point
+├── requirements.txt
+├── tounsilm_rag_kaggle.ipynb         # Kaggle test notebook
 └── rag_kb/
-    ├── data/                      # JSON knowledge base files
-    │   ├── expressions.json       # Tunisian expressions
-    │   ├── expressions2.json      # Number slang & extra expressions
-    │   ├── expressions3.json      # Additional expressions
-    │   ├── proverbs.json          # Tunisian proverbs
-    │   ├── food.json              # Tunisian dishes & ingredients
-    │   ├── rituals.json           # Social rituals & greetings
-    │   ├── code-switching.json    # French-Tunisian code-switching
-    │   └── series_movies.json     # Tunisian TV & cultural references
+    ├── data/                         # JSON knowledge base files
+    │   ├── expressions.json          # Tunisian expressions
+    │   ├── expressions2.json         # Number slang
+    │   ├── expressions3.json         # Additional expressions
+    │   ├── proverbs.json             # Tunisian proverbs (1 276 entries)
+    │   ├── food.json                 # Dishes & ingredients
+    │   ├── rituals.json              # Social rituals & greetings
+    │   ├── code-switching.json       # French-Tunisian code-switching
+    │   ├── series_movies.json        # Tunisian TV & films
+    │   └── colors.json               # Colors in Tunisian dialect
     │
-    ├── schemas/                   # Pydantic validation schemas
+    ├── schemas/                      # Pydantic validation schemas
     │   ├── base_schema.py
     │   ├── expression_schema.py
-    │   └── proverb_schema.py
+    │   ├── number_slang_schema.py
+    │   ├── proverb_schema.py
+    │   ├── food_schema.py
+    │   ├── ritual_schema.py
+    │   ├── code_switch_schema.py
+    │   ├── media_schema.py
+    │   └── color_schema.py
     │
-    ├── pipeline/                  # Core RAG logic
-    │   ├── build_embed_text.py    # Builds embedding text for all entry types
-    │   ├── validate_entries.py    # JSON validation
-    │   ├── indexer.py             # Loads data → ChromaDB
-    │   ├── retriever.py           # Semantic search over ChromaDB
-    │   ├── llm_interface.py       # TounsiLM-8b wrapper
-    │   └── rag_pipeline.py        # Orchestrates retrieve → generate
+    ├── pipeline/                     # Core RAG logic
+    │   ├── query_rewriter.py         # Arabizi normalization + query routing
+    │   ├── build_embed_text.py       # Builds embedding text per entry type
+    │   ├── indexer.py                # Loads data → ChromaDB
+    │   ├── retriever.py              # Hybrid BM25 + semantic retrieval
+    │   ├── validate_entries.py       # JSON validation against schemas
+    │   ├── llm_interface.py          # TounsiLM-8b wrapper
+    │   └── rag_pipeline.py           # Orchestrates rewrite → retrieve → generate
     │
     ├── scripts/
-    │   └── bulk_import.py         # Bulk import from JSON/CSV
+    │   └── bulk_import.py
     │
     └── db/
-        └── chroma_db/             # ChromaDB vector store (auto-created)
+        └── chroma_db/                # ChromaDB vector store (auto-created)
 ```
 
 ## Setup
@@ -45,19 +63,19 @@ RAG/
 pip install -r requirements.txt
 ```
 
-**Dependencies:** `chromadb`, `sentence-transformers`, `transformers`, `torch`, `accelerate`, `pydantic`
+**Dependencies:** `chromadb`, `sentence-transformers`, `transformers`, `torch`, `accelerate`, `pydantic`, `rank_bm25`
 
 ## Quick Start
 
 ### 1. Build the vector index
 
-Embeds all knowledge base entries and stores them in ChromaDB (run once):
+Embeds all knowledge base entries and stores them in ChromaDB. Run once per environment:
 
 ```bash
 python run_rag.py --index
 ```
 
-To rebuild from scratch:
+To wipe and rebuild from scratch:
 
 ```bash
 python run_rag.py --index --reset
@@ -65,28 +83,28 @@ python run_rag.py --index --reset
 
 ### 2. Test retrieval (no LLM)
 
-Validate that the knowledge base returns relevant results before loading the model:
+Validates retrieval quality before loading the model — fast:
 
 ```bash
 python run_rag.py --retrieve "ما معنى برشا؟" --top-k 3
-python run_rag.py --retrieve "harissa" --top-k 5 --type food
+python run_rag.py --retrieve "shnow hia el harissa" --top-k 5
+python run_rag.py --retrieve "harissa" --type food
 ```
 
 ### 3. Run a RAG query
 
-Retrieves relevant entries and feeds them as context to TounsiLM-8b:
+Retrieves relevant entries and generates an answer with TounsiLM-8b:
 
 ```bash
 python run_rag.py --query "شنو هي الهريسة التونسية؟"
+python run_rag.py --query "shnow maana el k7li fel tounsi?"
 python run_rag.py --query "ما معنى اللي فات مات؟" --type proverb
 ```
 
 ### 4. Interactive chat
 
 ```bash
-python run_rag.py                  # full precision (CPU/GPU)
-python run_rag.py --load-in-4bit   # 4-bit quantization (GPU, needs bitsandbytes)
-python run_rag.py --load-in-8bit   # 8-bit quantization (GPU, needs bitsandbytes)
+python run_rag.py
 ```
 
 In-session commands:
@@ -96,7 +114,7 @@ In-session commands:
 | `:exit` | Quit |
 | `:sources on` / `:sources off` | Toggle source display |
 | `:top-k 3` | Change retrieval count |
-| `:type proverb` | Filter by entry type |
+| `:type food` | Filter by entry type |
 
 ## CLI Reference
 
@@ -104,140 +122,148 @@ In-session commands:
 python run_rag.py [OPTIONS]
 
 Subcommands:
-  --index              Build / update ChromaDB index
-  --index --reset      Wipe and rebuild from scratch
-  --query "..."        Run a RAG query
-  --retrieve "..."     Retrieve without LLM
+  --index                Build / update ChromaDB index
+  --index --reset        Wipe and rebuild from scratch
+  --query "..."          Run a RAG query (retrieve + generate)
+  --retrieve "..."       Retrieve only, no LLM
 
 Retrieval:
-  --top-k N            Entries to retrieve (default: 5)
-  --type TYPE          Filter by type: expression, proverb, food, ritual,
-                       code_switch, tv_series, number_slang
-  --min-score F        Minimum similarity score 0–1 (default: 0.0)
+  --top-k N              Entries to retrieve (default: 5)
+  --type TYPE            Filter by type (see entry types below)
+  --min-score F          Minimum similarity score 0–1 (default: 0.0)
 
 Generation:
-  --max-tokens N       Max tokens to generate (default: 512)
-  --temperature F      Sampling temperature (default: 0.7)
+  --max-tokens N         Max tokens to generate (default: 512)
+  --temperature F        Sampling temperature (default: 0.7)
+  --max-context-tokens N Max tokens for retrieved context (default: 1500)
 
 Models:
-  --load-in-4bit       4-bit quantization (Linux + GPU + bitsandbytes)
-  --load-in-8bit       8-bit quantization (Linux + GPU + bitsandbytes)
-  --embedding-model M  Sentence-transformer model
-                       (default: intfloat/multilingual-e5-base)
+  --embedding-model M    Sentence-transformer model
+                         (default: intfloat/multilingual-e5-base)
 ```
 
 ## Architecture
 
+### Query rewriting
+
+Before retrieval, `QueryRewriter` generates up to 3 variants of the user query:
+
+1. **Original** — preserved as-is
+2. **Arabizi-normalized** — digit substitutions applied (`7→h`, `5→kh`, `3→a`, `9→q`, `8→gh`)
+3. **Cleaned** — punctuation stripped
+
+Results from all variants are merged by keeping the best score per document.
+
+The same module inspects the query for type-specific keywords and automatically sets an `entry_type` filter — e.g. a query mentioning *harissa* or *طبيخ* is routed to `food` without any manual flag.
+
+### Hybrid retrieval
+
+Each query variant is retrieved using two methods in parallel:
+
+| Method | Weight | Strength |
+|---|---|---|
+| Semantic (`multilingual-e5-base`) | 60% | Meaning, synonymy, cross-language |
+| BM25 (`rank_bm25`) | 40% | Exact keyword matches, precise Arabizi terms |
+
+The two ranked lists are merged with **Reciprocal Rank Fusion (RRF)**:
+
+```
+RRF(d) = 0.6 / (60 + rank_semantic(d)) + 0.4 / (60 + rank_bm25(d))
+```
+
 ### Embedding model
 
-`intfloat/multilingual-e5-base` is used for both indexing and retrieval. It handles Arabic script, Arabizi (Arabic in Latin letters), and French in a unified embedding space — essential for a knowledge base that mixes all three.
+`intfloat/multilingual-e5-base` handles Arabic script, Arabizi, and French in a unified embedding space. The E5 asymmetric prefix protocol is applied:
 
-### Vector store
+- `"passage: "` prepended at **index time**
+- `"query: "` prepended at **retrieval time**
 
-ChromaDB with cosine similarity, persisted to `rag_kb/db/chroma_db/`. The index survives restarts; only new entries need to be re-indexed.
+### Confidence scoring
 
-### Retrieval
+After retrieval, a confidence level is computed from the mean RRF-normalized score:
 
-Queries are prefixed with `"query: "` as required by E5 models before being embedded. Top-k results are returned with cosine similarity scores.
+| Level | Condition |
+|---|---|
+| High | mean score ≥ 0.75 |
+| Medium | 0.50 ≤ mean score < 0.75 |
+| Low | mean score < 0.50 |
+| None | no results returned |
 
 ### Prompt injection
 
-Retrieved entries are formatted and injected into TounsiLM-8b's system prompt so the model answers with grounded Tunisian cultural context rather than relying solely on parametric knowledge.
+Retrieved entries are injected into TounsiLM-8b's system prompt:
 
-```
+```text
 [INST] <<SYS>>
 أنت مساعد ذكي متخصص في اللهجة التونسية...
 
-معلومات من قاعدة المعرفة:
-[expression] برشا (barcha): كثير | مثال: عندي برشا خدمة اليوم
+معلومات من قاعدة المعرفة التونسية:
+[food | score: 0.91] الهريسة (harissa): معجون الفلفل الأحمر... | مثال: ...
 ...
 <</SYS>>
 
 {user question} [/INST]
 ```
 
+Context is truncated at **1 500 tokens** using TounsiLM's own tokenizer.
+
+## Knowledge Base
+
 ### Entry types
 
-| Type | File(s) | Key fields |
-|---|---|---|
-| `expression` | expressions*.json | term, meaning, origin, severity |
-| `proverb` | proverbs.json | literal_meaning, real_meaning, when_used |
-| `food` | food.json | description, regional_variation, when_eaten |
-| `ritual` | rituals.json | occasion, tone, expected_response |
-| `code_switch` | code-switching.json | origin_language, origin_word, domain |
-| `tv_series` | series_movies.json | cultural_significance, common_references |
-| `number_slang` | expressions2.json | msa_equivalent |
+| Type | File | Count | Key extra fields |
+|---|---|---|---|
+| `expression` | expressions*.json | 83 | `origin`, `severity`, `gender_sensitive` |
+| `number_slang` | expressions2.json | 15 | `msa_equivalent` |
+| `proverb` | proverbs.json | 1 276 | `literal_meaning`, `real_meaning`, `when_used` |
+| `food` | food.json | 123 | `description`, `regional_variation`, `when_eaten` |
+| `ingredient` | food.json | 26 | (same as food) |
+| `ritual` | rituals.json | 26 | `occasion`, `tone`, `expected_response` |
+| `code_switch` | code-switching.json | 23 | `origin_language`, `origin_word`, `domain` |
+| `tv_series` / `movie` / `film` | series_movies.json | 20 | `era`, `cultural_significance`, `common_references` |
+| `color` | colors.json | 20 | `color_family`, `cultural_significance` |
+| **Total** | | **1 647** | |
 
-## Schemas
+### Validation
 
-### BaseEntry (all types)
+Every entry is validated against its Pydantic schema before indexing. All types share `BaseEntry` fields (`id`, `type`, `term_arabic`, `term_arabizi`, `meaning`, `example`, `usage_context`, `region`, `register`, `generation`, `scripts`, `source`, `last_updated`) and extend them with type-specific fields.
 
-```python
-id: str
-type: str
-term_arabic: str
-term_arabizi: str
-meaning: str
-meaning_fr: Optional[str]
-example: str
-usage_context: str
-region: str          # "national" or region name
-register: str        # "formal" | "informal"
-generation: str      # "all" | "youth" | …
-scripts: List[str]   # ["arabic", "arabizi"]
-source: str
-last_updated: str
-```
-
-### ExpressionEntry
+Run validation across all files:
 
 ```python
-origin: Optional[str]
-severity: str        # "neutral" | "offensive" | …
-gender_sensitive: bool
+from pathlib import Path
+from rag_kb.pipeline.validate_entries import validate_file, print_validation_report
+
+for jf in Path("rag_kb/data").glob("*.json"):
+    valid, errors = validate_file(str(jf))
+    print_validation_report(valid, errors)
 ```
 
-### ProverbEntry
+### Adding a new type
 
-```python
-literal_meaning: str
-real_meaning: str
-when_used: str
-msa_equivalent: Optional[str]
-```
+1. Create `rag_kb/schemas/my_type_schema.py` extending `BaseEntry`
+2. Add the type to `SCHEMA_MAP` in `rag_kb/pipeline/validate_entries.py`
+3. Add a field block to `build_embed_text.py`
+4. Add routing keywords to `query_rewriter.py` if needed
+5. Re-index: `python run_rag.py --index`
 
-## Adding Data
+## Running on Kaggle
 
-### Validate a file
+A ready-to-use notebook is included: **`tounsilm_rag_kaggle.ipynb`**
 
-```python
-from rag_kb.pipeline import validate_file, print_validation_report
+Upload it to Kaggle, then:
 
-valid, errors = validate_file("rag_kb/data/expressions.json")
-print_validation_report(valid, errors)
-```
+1. Set **Accelerator** → GPU T4, **Internet** → On
+2. Add a secret named `HF_TOKEN` with your HuggingFace token
+3. Run all cells in order
 
-### Bulk import from JSON
+The notebook tests the query rewriter, BM25 vs semantic comparison, retrieval-only mode, and full RAG queries with confidence output.
 
-```python
-from rag_kb.scripts.bulk_import import bulk_import_from_json
+## Hardware
 
-imported, failed = bulk_import_from_json("new_entries.json", "expression")
-```
+| Setup | VRAM needed |
+|---|---|
+| CPU only (slow) | — |
+| GPU full precision | ~16 GB |
 
-After adding data, re-run indexing to pick up new entries:
-
-```bash
-python run_rag.py --index
-```
-
-## Hardware Notes
-
-| Setup | Command | VRAM needed |
-|---|---|---|
-| CPU only | `python run_rag.py` | — |
-| GPU full precision | `python run_rag.py` | ~16 GB |
-| GPU 8-bit | `python run_rag.py --load-in-8bit` | ~10 GB |
-| GPU 4-bit | `python run_rag.py --load-in-4bit` | ~6 GB |
-
-`bitsandbytes` quantization requires Linux with a CUDA GPU. On Windows the pipeline falls back to full precision automatically.
+Kaggle T4 (16 GB) is the recommended free-tier environment.
